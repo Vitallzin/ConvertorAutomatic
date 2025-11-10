@@ -1,0 +1,19 @@
+.currency-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px; /*Distancia entre a bandeira e o select  */
+  margin: 8px 0;
+}
+
+.currency-selector select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.currency-selector select:hover {
+  border-color: #999;
+}
