@@ -1,0 +1,49 @@
+.footer {
+  background-color: #f8f9fa;
+  color: #202124;
+  padding: 25px 10px;
+  text-align: center;
+  border-top: 1px solid #dadce0;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.footer-content p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+}
+
+.footer-team p {
+  font-weight: 600;
+  color: #1a73e8;
+  margin-bottom: 5px;
+  margin-right: 20px;
+}
+
+/* Estilo da lista de nomes */
+.footer-team ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  display: inline-block;
+  text-align: left;
+  margin-top: -5px;
+}
+
+.footer-team li {
+  font-size: 1rem;
+  margin: 3px 0;
+}
+
+.footer-professor {
+  font-style: italic;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.footer-credit {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+
+}

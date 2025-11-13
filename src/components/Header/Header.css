@@ -1,0 +1,40 @@
+/* Cabeçalho principal */
+.app-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  color: #202124;
+  padding: 40px 20px;
+  border-bottom: 1px solid #dadce0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Container interno (para centralizar título e link) */
+.header-content {
+  text-align: center;
+}
+
+/* Título principal */
+.header-content h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.4px;
+}
+
+/* Link abaixo do título */
+.header-content a {
+  display: block;
+  margin-top: 6px;
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.header-content a:hover {
+  color: #1557b0;
+  text-shadow: 0 0 6px rgba(26, 115, 232, 0.3);
+}

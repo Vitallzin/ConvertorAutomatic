@@ -1,0 +1,244 @@
+.rates-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.rates-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+/* ✅ SEARCH WRAPPER */
+.search-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.rates-search-input {
+  width: 90%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid rgba(100, 108, 255, 0.3);
+  border-radius: 8px;
+  background-color: white;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.rates-search-input:focus {
+  outline: none;
+  border-color: #646cff;
+  background-color: rgba(100, 108, 255, 0.05);
+  box-shadow: 0 0 8px rgba(100, 108, 255, 0.3);
+}
+
+.rates-search-input::placeholder {
+  color: rgba(100, 100, 100, 0.7);
+}
+
+/* ✅ DROPDOWN DE SUGESTÕES */
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid rgba(100, 108, 255, 0.3);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background-color: rgba(100, 108, 255, 0.1);
+}
+
+/* ✅ CONTROLE DE MOEDA BASE */
+.base-currency-control {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: rgba(101, 107, 224, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid #646cff;
+}
+
+.base-currency-control label {
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.currency-selector-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  max-width: 300px;
+}
+
+.base-currency-select {
+  padding: 12px 15px;
+  border: 2px solid rgba(100, 108, 255, 0.3);
+  border-radius: 6px;
+  background-color: white;
+  color: #7e7878;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  font-weight: 600;
+}
+
+.base-currency-select:hover {
+  border-color: #646cff;
+  background-color: rgba(100, 108, 255, 0.05);
+}
+
+.base-currency-select:focus {
+  outline: none;
+  border-color: #646cff;
+  box-shadow: 0 0 8px rgba(100, 108, 255, 0.3);
+}
+
+/* ✅ MENSAGENS */
+.error-message {
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  background-color: #ffebee;
+  color: #c62828;
+  border-radius: 6px;
+  border-left: 4px solid #c62828;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 20px;
+  color: #646cff;
+  font-weight: 500;
+}
+
+/* ✅ TABELA */
+.rates-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: rgb(221, 219, 219);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rates-table thead {
+  background-color: #646cff;
+  color: white;
+}
+
+.rates-table th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.rates-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+}
+
+.rates-table tbody tr:hover {
+  background-color: rgba(100, 108, 255, 0.05);
+}
+
+.flag-cell {
+  width: 50px;
+  text-align: center;
+}
+
+.action-cell {
+  text-align: center;
+}
+
+.btn-remove {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-remove:hover {
+  background-color: #ff5252;
+}
+
+.btn-remove:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.no-results {
+  text-align: center;
+  color: #999;
+  padding: 30px 15px;
+  font-style: italic;
+}
+
+/* ✅ SEÇÃO PARA ADICIONAR MOEDAS */
+.add-currency-section {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: rgba(100, 108, 255, 0.05);
+  border-radius: 8px;
+  border: 2px dashed rgba(100, 108, 255, 0.3);
+}
+
+.add-currency-section h3 {
+  margin: 0 0 15px 0;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+/* ✅ SCROLLBAR DO DROPDOWN */
+.suggestions-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-thumb {
+  background: #646cff;
+  border-radius: 3px;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #5561d9;
+}
