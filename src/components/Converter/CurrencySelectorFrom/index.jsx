@@ -1,24 +1,23 @@
-import React from 'react';
-import Flag from '../../Flag'; // importa o componente de bandeira
-import './CurrencySelectorFrom.css'; //estilização
+import React from 'react'; // importa React
+import Flag from '../../Flag'; // importa o componente que exibe a bandeira
+import './CurrencySelectorFrom.css'; // importa estilos específicos do seletor
 
-// Lista básica de moedas (eur, real, euro, iene japones, libra esterlina)
+// Lista de moedas suportadas pelo seletor
 const currencies = ['USD', 'BRL', 'EUR', 'JPY', 'GBP'];
 
-//função para escolher as moedas de iniciais (de origem)
+// Componente que renderiza o seletor da moeda de origem
 function CurrencySelectorFrom({ fromCurrency, setFromCurrency }) {
   return (
-    <div className="currency-selector">
-      <Flag currency={fromCurrency} /> {/* bandeira que está selecioanda */}
+    <div className="currency-selector">{/* container do seletor + bandeira */}
+      <Flag currency={fromCurrency} />{/* componente que mostra a bandeira da moeda atual */}
       <select
-      // menu que mostra as opções para o usuario escolher a moeda
-        value={fromCurrency} //valor atual do seletor 
-        onChange={(e) => setFromCurrency(e.target.value)} //atualiza quando o usuario escolhe outra moeda
+        value={fromCurrency} // valor atualmente selecionado no select
+        onChange={(e) => setFromCurrency(e.target.value)} // atualiza o estado quando o usuário muda
       >
-        {/* cira uma opção para cada moeda da lista */}
+        { /* Gera um <option> para cada moeda disponível */ }
         {currencies.map((code) => (
-          <option key={code} value={code}> {/* Key serve como indentificador unico*/}
-            {code}
+          <option key={code} value={code}> {/* key única para React e value para o select */}
+            {code} {/* exibe o código da moeda (ex: USD) */}
           </option>
         ))}
       </select>
@@ -26,5 +25,4 @@ function CurrencySelectorFrom({ fromCurrency, setFromCurrency }) {
   );
 }
 
-//exporta este componente para ser usado em outros arquivos
-export default CurrencySelectorFrom;
+export default CurrencySelectorFrom; // exporta o componente para uso externo

@@ -1,11 +1,17 @@
-import Reaact from 'react';
-import './ConvertButton.css';
+import React from "react"; // importa React
+import "./ConvertButton.css"; // importa estilos do botão
 
-function ConvertButton() {
+// Botão que dispara a conversão. Mostra estado "Convertendo..." quando loading=true
+const ConvertButton = ({ onClick, loading }) => {
   return (
-    <div>
-      {/* Botão principal para converter. */}
-    </div>
+    <button
+      className={`convert-button ${loading ? "loading" : ""}`} // aplica classe 'loading' condicionalmente
+      onClick={onClick} // função a ser chamada ao clicar
+      disabled={loading} // desabilita quando está carregando
+    >
+      {loading ? "Convertendo..." : "Converter"} {/* texto condicional */}
+    </button>
   );
-}
-export default ConvertButton;
+};
+
+export default ConvertButton; // exporta o componente

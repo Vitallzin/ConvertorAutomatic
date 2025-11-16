@@ -1,0 +1,12 @@
+/* AmountInput.css
+   Estilos para o campo de valor. Essa classe aplica largura, padding e borda.
+*/
+.amount-input {
+  width: 100%; /* ocupa toda largura do container */
+  padding: 10px; /* espaço interno */
+  border-radius: 6px; /* cantos arredondados */
+  border: 1px solid #ccc; /* borda leve */
+  margin-top: 10px; /* separação superior */
+  font-size: 16px; /* tamanho do texto */
+  box-sizing: border-box; /* inclui padding na largura total */
+}

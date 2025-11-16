@@ -1,23 +1,23 @@
-import React from 'react';
-import Flag from '../../Flag'; // importa o componente que mostra as bandeiras
-import './CurrencySelectorTo.css'; // estilização
+import React from 'react'; // importa React
+import Flag from '../../Flag'; // componente para exibir bandeira conforme código
+import './CurrencySelectorTo.css'; // estilos para o seletor de destino
 
-// Lista de moedas igual ao do From
+// Lista de moedas suportadas (igual ao selector From)
 const currencies = ['USD', 'BRL', 'EUR', 'JPY', 'GBP'];
 
-//função para escolher a moeda e a bandeira do destino desejado
+// Componente seletor para a moeda de destino
 function CurrencySelectorTo({ toCurrency, setToCurrency }) {
   return (
-    <div className="currency-selector">
-      <Flag currency={toCurrency} /> {/*mostra a bandeira  selecionada como "destino" (A que quer converter) */}
+    <div className="currency-selector">{/* container do seletor */}
+      <Flag currency={toCurrency} />{/* mostra a bandeira da moeda destino */}
       <select
-        value={toCurrency} //valor atual da seleção mesmo que no from
-        onChange={(e) => setToCurrency(e.target.value)} //tbm atualiza o estado quando escolhe uma nova moeda
+        value={toCurrency} // mostra o valor atualmente selecionado
+        onChange={(e) => setToCurrency(e.target.value)} // atualiza o estado do pai ao mudar
       >
-        {/* gera automaticamente opções apartir da  lista (array"const currencies") */}
+        { /* Mapeia a lista de moedas para opções do select */ }
         {currencies.map((code) => (
-          <option key={code} value={code}> {/*key é um identificador unico para cada opção (opition ) */}
-            {code}  {/* mostra o codigo da moeda */}
+          <option key={code} value={code}>{/* key única para React */}
+            {code} {/* exibe o código da moeda */}
           </option>
         ))}
       </select>
@@ -25,5 +25,4 @@ function CurrencySelectorTo({ toCurrency, setToCurrency }) {
   );
 }
 
-//exporta este componente para ser usado em outros arquivos
-export default CurrencySelectorTo;
+export default CurrencySelectorTo; // exporta para uso em outros componentes

@@ -1,20 +1,23 @@
+/* CurrencySelectorFrom.css
+   Estilos para o seletor de moeda de origem: alinha bandeira e select
+*/
 .currency-selector {
-  display: flex;
-  align-items: center;
-  gap: 10px; /*Distancia entre a bandeira e o select  */
-  margin: 8px 0;
+  display: flex; /* exibe conteúdo em linha */
+  align-items: center; /* alinha verticalmente */
+  gap: 10px; /* distância entre bandeira e select */
+  margin: 8px 0; /* margem vertical */
 }
 
 .currency-selector select {
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: #f8f8f8;
-  color: #000000;
-  font-size: 14px;
-  cursor: pointer;
+  padding: 6px 10px; /* espaçamento interno */
+  border-radius: 8px; /* cantos arredondados */
+  border: 1px solid #ccc; /* borda leve */
+  background-color: #f8f8f8; /* fundo claro para o select */
+  color: #000000; /* cor do texto */
+  font-size: 14px; /* tamanho do texto */
+  cursor: pointer; /* cursor ao passar o mouse */
 }
 
 .currency-selector select:hover {
-  border-color: #000000;
+  border-color: #000000; /* destaca borda ao passar o mouse */
 }

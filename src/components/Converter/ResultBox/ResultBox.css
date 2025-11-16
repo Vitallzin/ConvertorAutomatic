@@ -1,0 +1,36 @@
+/* ResultBox.css
+	 Estilos do componente ResultBox. Cada classe formata uma parte do resultado:
+	 - .result-box: container
+	 - .result-main: linha principal
+	 - .result-meta: taxa e data
+	 - .result-small: info auxiliar (taxa invertida)
+*/
+
+.result-box {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 18px;
+	background-color: #333;
+	padding: 10px;
+	border-radius: 8px;
+}
+
+/* linha principal que mostra a conversão */
+.result-main {
+	margin: 0;
+}
+
+/* linha que mostra a taxa usada e a data */
+.result-meta {
+	font-size: 14px;
+	color: #ccc;
+	margin-top: 5px;
+}
+
+/* linha menor que mostra a taxa invertida e info suplementar */
+.result-small {
+	font-size: 12px;
+	color: #aaa;
+	margin-top: 4px;
+}
+

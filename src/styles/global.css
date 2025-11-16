@@ -1,0 +1,174 @@
+/* ----------------------------------------- */
+/*             VARIÁVEIS (LIGHT)             */
+/* ----------------------------------------- */
+:root {
+  --font-size: 16px;
+
+  /* BACKGROUND / TEXT */
+  --color-background: #ffffff;
+  
+  --color-foreground: #7c20d1;
+
+  /* ROXO PRINCIPAL (FIGMA) */
+  --color-primary: #646cff; /* botões, detalhes */
+  --color-primary-hover: #7a80ff;
+  --color-primary-foreground: #ffffff;
+
+  /* CARTÕES */
+  --color-card: #ffffff;
+  --color-card-foreground: #1a1b1e;
+
+  /* BORDAS */
+  --color-border: rgba(0, 0, 0, 0.12);
+
+  /* INPUTS */
+  --color-input-background: #f3f3f5;
+  --color-input-foreground: #1a1b1e;
+
+  /* ACENTOS */
+  --color-accent: #ececf0;
+  --color-accent-foreground: #1a1b1e;
+
+  /* MUTED */
+  --color-muted: #e8e8ec;
+  --color-muted-foreground: #6b6b7a;
+
+  /* RING/HOVER OUTLINE */
+  --color-ring: #646cff;
+
+  --radius: 10px;
+
+  --box-shadow: 0 4px 6px rgba(158, 29, 197, 0.589);
+}
+
+/* ----------------------------------------- */
+/*             VARIÁVEIS (DARK)              */
+/* ----------------------------------------- */
+.dark {
+  --color-background: radial-gradient(
+      circle at 10% 10%,
+      rgba(68, 39, 80, 0.356),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(146, 16, 233, 0.534),
+      transparent 55%
+    ),
+    #000000;
+  --color-background-components: #121217;
+  --color-foreground: #ac17e7;
+  
+
+  /* ROXO ESCURO E MAIS SATURADO (figma dark) */
+  --color-primary: #8f95ff;
+  --color-primary-hover: #a5abff;
+  --color-primary-foreground: #0d0d10;
+
+  --color-card: #17171c;
+  --color-card-foreground: #f5f5f5;
+
+  --color-border: rgba(255, 255, 255, 0.12);
+
+  --color-input-background: #1b1b22;
+  --color-input-foreground: #f5f5f5;
+
+  --color-accent: #2a2a33;
+  --color-accent-foreground: #f5f5f5;
+
+  --color-muted: #2f2f38;
+  --color-muted-foreground: #c9c9d8;
+
+  --color-ring: #8f95ff;
+
+  --box-shadow: 0 4px 6px rgba(179, 12, 230, 0.664);
+}
+
+/* ----------------------------------------- */
+/*            ESTILO BASE GLOBAL             */
+/* ----------------------------------------- */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: var(--font-size);
+  background: var(--color-background) !important;
+  color: var(--color-foreground);
+  line-height: 1.5;
+  min-height: 100vh;
+  transition: background 0.25s, color 0.25s;
+}
+
+/* LINKS */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* BOTÕES (globais) */
+button {
+  background: var(--color-primary); 
+  color: var(--color-primary-foreground);
+  border: none;
+  padding: 0.6em 1.2em;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.25s, opacity 0.25s;
+  font-size: 1rem;
+}
+button:hover {
+  background: var(--color-primary-hover);
+}
+h1{
+  color: var(--color-foreground);
+}
+/* CARDS */
+.card {
+  background: var(--color-card);
+  color: var(--color-card-foreground);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+/* INPUTS */
+input, select {
+  background: var(--color-input-background);
+  color: var(--color-input-foreground);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.6em;
+  font-size: 1rem;
+}
+input:focus, select:focus {
+  outline: 2px solid var(--color-ring);
+}
+
+/* ACENTOS */
+.accent {
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+.converter-container{
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+
+}
+/* MUTED */
+.muted {
+  background: var(--color-muted);
+  color: var(--color-muted-foreground);
+}
+
+/* TRANSIÇÃO MAIS SUAVE */
+* {
+  transition: background 0.25s, color 0.25s, border 0.25s;
+}
+

@@ -1,20 +1,23 @@
+/* CurrencySelectorTo.css
+   Estilos para o seletor de moeda destino. Similar ao From, com pequenas diferenças se necessário.
+*/
 .currency-selector {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* distancia entre a bandeira e o seletor */
-  margin: 8px 0;
+  display: flex; /* layout em linha */
+  align-items: center; /* centraliza verticalmente */
+  gap: 10px; /* espaço entre bandeira e seletor */
+  margin: 8px 0; /* margem vertical */
 }
 
 .currency-selector select {
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: #f8f8f8;
-  color: #000000;
-  font-size: 14px;
-  cursor: pointer;
+  padding: 6px 10px; /* padding interno */
+  border-radius: 8px; /* cantos arredondados */
+  border: 1px solid #ccc; /* borda neutra */
+  background-color: #f8f8f8; /* fundo claro */
+  color: #000000; /* cor do texto */
+  font-size: 14px; /* tamanho do texto */
+  cursor: pointer; /* cursor clickável */
 }
 
 .currency-selector select:hover {
-  border-color: #999;
+  border-color: #999; /* muda cor da borda ao passar o mouse */
 }

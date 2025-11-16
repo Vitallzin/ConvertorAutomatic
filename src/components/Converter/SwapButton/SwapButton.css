@@ -1,0 +1,17 @@
+/* SwapButton.css
+   Estilos para o botão de swap (ícone 🔁) utilizado entre os seletores
+*/
+.swap-button {
+  background-color: #444; /* cor de fundo */
+  color: #fff; /* cor do ícone/texto */
+  border: none; /* sem borda */
+  border-radius: 6px; /* cantos arredondados */
+  padding: 8px 12px; /* espaçamento interno */
+  margin: 0 10px; /* margem lateral para afastar dos seletores */
+  cursor: pointer; /* cursor pointer ao passar o mouse */
+  font-size: 18px; /* tamanho do ícone */
+}
+
+.swap-button:focus {
+  outline: 2px solid #6b6b6b; /* destaque quando em foco */
+}

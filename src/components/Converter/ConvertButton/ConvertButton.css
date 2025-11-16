@@ -1,0 +1,24 @@
+/* ConvertButton.css
+   Estilos para o botão "Converter" e seu estado de loading/disabled
+*/
+.convert-button {
+  width: 100%; /* ocupa toda a largura do container */
+  padding: 10px; /* espaçamento interno */
+  margin-top: 15px; /* separação superior */
+  border: none; /* sem borda */
+  border-radius: 8px; /* cantos arredondados */
+  background-color: #4caf50; /* cor principal */
+  color: white; /* cor do texto */
+  font-weight: bold; /* texto em negrito */
+  cursor: pointer; /* cursor ao passar o mouse */
+}
+
+.convert-button.loading {
+  background-color: #555; /* cor diferente durante loading */
+  cursor: not-allowed; /* indica que não pode clicar */
+}
+
+/* estado desabilitado */
+.convert-button:disabled {
+  opacity: 0.85; /* leve transparência quando desabilitado */
+}
