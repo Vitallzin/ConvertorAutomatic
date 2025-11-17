@@ -1,12 +1,14 @@
-.footer {
+footer {
+  width: 100%;
   background-color: var(--color-background);
   color: #656668;
-  padding: 25px 10px;
-  border-top: 1px solid #dadce0;
-  box-shadow: var(--box-shadow);
+  padding: 35px 30px; /* aumenta a lateral para ficar igual ao site */
+  border-top: 1px solid var(--color-border);
   font-family: 'Segoe UI', Roboto, sans-serif;
   text-align: left;
+  box-sizing: border-box;
 }
+
 
 .footer-content {
 display: flex;
@@ -23,10 +25,10 @@ flex-wrap: wrap;
 
 
 .footer-sobre {
-  color: #9d1ada;
+  color: var(--color-foreground);
 }
 .footer-orientador {
-  color: #9d1ada;
+  color: var(--color-foreground);
 }
 
 .footer-team p {
