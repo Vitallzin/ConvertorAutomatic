@@ -3,7 +3,7 @@
   color: #656668;
   padding: 25px 10px;
   border-top: 1px solid #dadce0;
-  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--box-shadow);
   font-family: 'Segoe UI', Roboto, sans-serif;
   text-align: left;
 }
