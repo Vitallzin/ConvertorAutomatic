@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getRates } from "../../../services/api";
+import { getRates } from "../../../services/Api";
 import Flag from "../../Flag"; // Componente para exibir bandeiras.
 import CurrencyBase from "../CurrencyBase"; // Componente para selecionar a moeda base.
 import AddRatesTable from "../AddRatesTable";
