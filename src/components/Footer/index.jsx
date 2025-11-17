@@ -5,8 +5,26 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-content">
-        {/* Texto principal */}
-        <p>© 2024 API-Moeda. Todos os direitos reservados.</p>
+        {/* sobre o projeto*/}
+        <div>
+          <p className="footer-sobre">
+            Sobre o projeto
+          </p>
+          <p className="footer-credit">
+          Projeto de conversão de moedas desenvolvido para fins educativos.<br></br>
+          Os dados de câmbio são fornecidos pela API Exchange Rate em tempo real.
+          </p>
+        </div>
+        {/* Professor orientador */}
+        <di>
+          <p className="footer-orientador">
+            Professor Orientador
+          </p>
+         <p className="footer-professor">
+          Professor: Jorge Lucas <br></br>
+          Turma B de Analise e Desenvolvimento de Sistemas
+        </p>
+        </di>
 
         {/* Nomes dos colaboradores */}
         <div className="footer-team">
@@ -14,21 +32,14 @@ function Footer() {
           <ul>
             <li>Cauã Vital</li>
             <li>Francisco Marques</li>
-            <li>Gabriel César</li>
+            <li>Gabriel Cesar</li>
             <li>João Victor</li>
             <li>Eduardo Vinícius</li>
           </ul>
         </div>
 
-        {/* Professor orientador */}
-        <p className="footer-professor">
-          Orientador: Jorge Lucas
-        </p>
-
-        {/* Créditos do projeto */}
-        <p className="footer-credit">
-          Projeto Desenvolvido pelo Grupo 5 — API-Moeda
-        </p>
+        {/* Texto principal */}
+        <p>© 2025 API-Moeda. Todos os direitos reservados.</p>
       </div>
     </footer>
   );
