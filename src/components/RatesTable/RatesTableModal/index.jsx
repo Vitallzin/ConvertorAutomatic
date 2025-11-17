@@ -122,4 +122,4 @@ function RatesModal({ onClose }) {
   );
 }
 
-export default RatesModal;
+export default RatesModal;                    
