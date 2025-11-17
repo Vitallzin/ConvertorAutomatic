@@ -1,69 +1,89 @@
 import React, { useEffect, useState } from "react";
-import { getRates } from "../../../services/Api";
+import { getRates } from "../../../services/api";
 import Flag from "../../Flag"; // Componente para exibir bandeiras.
 import CurrencyBase from "../CurrencyBase"; // Componente para selecionar a moeda base.
 import AddRatesTable from "../AddRatesTable";
 import "./RatesTable.css";
 
 function RatesTable() {
-  const [rates, setRates] = useState({}); // Armazena as taxas de câmbio.
-  const [allCurrencies, setAllCurrencies] = useState([]); // Armazena todas as moedas disponíveis.
-  const [searchTerm, setSearchTerm] = useState(""); // Termo de busca para adicionar moedas. 
-  const [selectedCurrency, setSelectedCurrency] = useState("USD"); // Moeda base selecionada.
-  const [displayCurrencies, setDisplayCurrencies] = useState(["USD", "EUR", "BRL", "GBP", "JPY"]); // Moedas exibidas na tabela.
-  const [loading, setLoading] = useState(false); // Estado de carregamento.
-  const [error, setError] = useState(null); // Estado de erro.
-  const [showSuggestions, setShowSuggestions] = useState(false);  // Controla a exibição das sugestões.
+  const [rates, setRates] = useState({});
+  const [allCurrencies, setAllCurrencies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
+  const [displayCurrencies, setDisplayCurrencies] = useState(["USD", "EUR", "BRL", "GBP", "JPY"]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   // ✅ Busca todas as moedas disponíveis ao montar
   useEffect(() => {
-    async function fetchAllCurrencies() { 
+    let mounted = true;
+    
+    async function fetchAllCurrencies() {
       setLoading(true);
       setError(null);
       try {
         const data = await getRates("USD");
-        const rates = data.conversion_rates || data.rates || data;
+        const ratesObj = data.conversion_rates || data.rates || data || {};
         
-        if (!rates || Object.keys(rates).length === 0) {
+        if (!ratesObj || Object.keys(ratesObj).length === 0) {
           throw new Error("Nenhuma moeda retornada pela API");
         }
         
-        setAllCurrencies(Object.keys(rates).sort());
+        if (mounted) {
+          setAllCurrencies(Object.keys(ratesObj).sort());
+        }
       } catch (error) {
-        setError("Erro ao buscar moedas. Tente novamente.");
-        console.error("Erro:", error);
+        console.error("Erro ao buscar moedas:", error);
+        if (mounted) {
+          setError("Erro ao buscar moedas. Tente novamente.");
+        }
       } finally {
-        setLoading(false);
+        if (mounted) {
+          setLoading(false);
+        }
       }
-    } 
+    }
+    
     fetchAllCurrencies();
+    return () => { mounted = false; };
   }, []);
 
   // ✅ Busca as taxas da moeda selecionada
   useEffect(() => {
+    let mounted = true;
+    
     async function fetchRatesForSelected() {
       setLoading(true);
       setError(null);
       try {
         const data = await getRates(selectedCurrency);
-        const rates = data.conversion_rates || data.rates || data;
+        const ratesObj = data.conversion_rates || data.rates || data || {};
         
-        if (!rates || Object.keys(rates).length === 0) {
+        if (!ratesObj || Object.keys(ratesObj).length === 0) {
           throw new Error("Nenhuma taxa retornada");
         }
         
-        setRates(rates);
+        if (mounted) {
+          setRates(ratesObj);
+        }
       } catch (error) {
-        setError("Erro ao buscar taxas. Tente novamente.");
-        console.error("Erro:", error);
+        console.error("Erro ao buscar taxas:", error);
+        if (mounted) {
+          setError("Erro ao buscar taxas. Tente novamente.");
+        }
       } finally {
-        setLoading(false);
+        if (mounted) {
+          setLoading(false);
+        }
       }
     }
-    
+
     if (selectedCurrency) {
       fetchRatesForSelected();
     }
+    
+    return () => { mounted = false; };
   }, [selectedCurrency]);
 
   // ✅ Filtra as moedas para adicionar (exclui as já exibidas)
@@ -87,39 +107,39 @@ function RatesTable() {
     setSelectedCurrency(currency);
   };
 
-  const handleAddCurrency = (currency) => { // Adiciona moeda à tabela
-    if (!displayCurrencies.includes(currency)) { // Evita duplicatas
-      setDisplayCurrencies([...displayCurrencies, currency]); // Adiciona a nova moeda
-      setSearchTerm(""); // Limpa o termo de busca
-      setShowSuggestions(false); // Esconde as sugestões
+  const handleAddCurrency = (currency) => {
+    if (!displayCurrencies.includes(currency)) {
+      setDisplayCurrencies([...displayCurrencies, currency]);
+      setSearchTerm("");
+      setShowSuggestions(false);
     }
   };
 
-  const handleRemoveCurrency = (currency) => { // Remove moeda da tabela
-    if (displayCurrencies.length > 1) {  // Garante que sempre haja pelo menos uma moeda
-      setDisplayCurrencies(displayCurrencies.filter((c) => c !== currency)); // Remove a moeda selecionada
+  const handleRemoveCurrency = (currency) => {
+    if (displayCurrencies.length > 1) {
+      setDisplayCurrencies(displayCurrencies.filter((c) => c !== currency));
     }
   };
 
-  const handleSearchChange = (value) => { // Atualiza o termo de busca
-    setSearchTerm(value); // Atualiza o termo de busca
-    setShowSuggestions(true); // Mostra as sugestões
+  const handleSearchChange = (value) => {
+    setSearchTerm(value);
+    setShowSuggestions(true);
   };
 
-  const handleSearchFocus = () => { // Mostra sugestões ao focar
+  const handleSearchFocus = () => {
     setShowSuggestions(true);
   };
 
   const handleSearchBlur = () => {
-    setTimeout(() => setShowSuggestions(false), 200);// Esconde sugestões ao desfocar, com delay para permitir clique
+    setTimeout(() => setShowSuggestions(false), 200);
   };
 
   return (
     <div className="rates-container">
       <h2>Tabela de Câmbio</h2>
-      
+
       {/* ✅ SUBCOMPONENTE: Moeda Base */}
-      <CurrencyBase 
+      <CurrencyBase
         selectedCurrency={selectedCurrency}
         allCurrencies={allCurrencies}
         onChangeCurrency={handleChangeCurrency}
@@ -143,18 +163,23 @@ function RatesTable() {
             </tr>
           </thead>
           <tbody>
-            {filteredRates.length > 0 ? ( // Verifica se há moedas para exibir
-              filteredRates.map(({ currency, rate }) => ( // Renderiza cada linha da tabela
-                <tr key={currency}> 
-                  <td className="flag-cell"><Flag currency={currency} /></td>
-                  <td>{currency}</td>
-                  <td>{rate ? rate.toFixed(4) : "N/A"}</td>
+            {filteredRates.length > 0 ? (
+              filteredRates.map(({ currency, rate }) => (
+                <tr key={currency}>
+                  <td className="flag-cell">
+                    <Flag currency={currency} />
+                  </td>
+                  <td className="currency-code">{currency}</td>
+                  <td className="rate-value">
+                    {Number(rate || 0).toFixed(4)}
+                  </td>
                   <td className="action-cell">
                     {displayCurrencies.length > 1 && (
                       <button
                         className="btn-remove"
-                        onClick={() => handleRemoveCurrency(currency)} // Remove a moeda ao clicar
-                        title="Remover"
+                        onClick={() => handleRemoveCurrency(currency)}
+                        title="Remover moeda"
+                        aria-label={`Remover ${currency}`}
                       >
                         ✕
                       </button>
@@ -174,7 +199,7 @@ function RatesTable() {
       )}
 
       {/* ✅ SUBCOMPONENTE: Adicionar Moedas */}
-      <AddRatesTable // Componente para adicionar novas moedas
+      <AddRatesTable
         searchTerm={searchTerm}
         onSearchChange={handleSearchChange}
         suggestions={suggestions}
