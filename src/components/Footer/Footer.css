@@ -31,7 +31,7 @@ flex-wrap: wrap;
 
 .footer-team p {
   font-weight: 600;
-  color: #9d1ada;
+  color: var(--color-foreground);
   margin-bottom: 5px;
   margin-right: 20px;
 }
