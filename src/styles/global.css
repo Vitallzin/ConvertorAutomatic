@@ -8,6 +8,7 @@
   --color-background: #ffffff;
   
   --color-foreground: #7c20d1;
+  --color-button: #ffffff;
 
   /* ROXO PRINCIPAL (FIGMA) */
   --color-primary: #646cff; /* botões, detalhes */
@@ -76,10 +77,10 @@
     #000000;
   --color-background-components: #121217;
   --color-foreground: #ac17e7;
-  
+  --color-button: #ffffff;
 
   /* ROXO ESCURO E MAIS SATURADO (figma dark) */
-  --color-primary: #8f95ff;
+  --color-primary: #a5abff;
   --color-primary-hover: #a5abff;
   --color-primary-foreground: #0d0d10;
 
