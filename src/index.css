@@ -1,18 +1,6 @@
 @import "./styles/global.css";
 
-html, body {
-  margin: 0;
-  background: var(--background);
-  color: var(--foreground);
-  font-family: system-ui;
-}
 
-a {
-  color: var(--accent);
-}
-a:hover {
-  color: var(--accent-hover);
-}
 
 
 

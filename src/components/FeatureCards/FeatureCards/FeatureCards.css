@@ -1,0 +1,69 @@
+/* CONTAINER DOS CARDS */
+.feature-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin: 40px auto;
+  padding: 0 15px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* CARD INDIVIDUAL */
+.feature-item {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: left;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* ESTÉTICA NO MODO DARK */
+.dark .feature-item {
+  backdrop-filter: blur(4px);
+  box-shadow:
+    0 0 12px rgba(140,150,255,0.05),
+    inset 0 0 6px rgba(255,255,255,0.03);
+}
+
+/* HOVER */
+.feature-item:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 14px rgba(140,150,255,0.2);
+}
+
+/* TITULO */
+.feature-title1 {
+  margin: 10px 70px ;
+  font-size: 1.1rem;
+  color: var(--color-foreground);
+}
+.feature-title2 {
+    margin: 10px 70px ;
+    font-size: 1.1rem;
+    color: var(--color-foreground);
+  }
+  .feature-title3 {
+    margin: 10px 50px ;
+    font-size: 1.1rem;
+    color: var(--color-foreground);
+  }
+
+/* DESCRIÇÃO */
+.feature-description {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+/* ICONE */
+.feature-icon {
+  margin: 10px 140px;
+}
+p{
+    color: var(--color-muted-foreground);
+    text-align: center;
+}

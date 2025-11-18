@@ -37,6 +37,7 @@ function Footer() {
             <li>Eduardo Vinícius</li>
           </ul>
         </div>
+        
 
         {/* Texto principal */}
         <p>© 2025 API-Moeda. Todos os direitos reservados.</p>

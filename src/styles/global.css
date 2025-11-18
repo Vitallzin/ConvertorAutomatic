@@ -90,6 +90,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  
 }
 
 body {
@@ -97,8 +98,6 @@ body {
   font-size: var(--font-size);
   background: var(--color-background) !important;
   color: var(--color-foreground);
-  line-height: 1.5;
-  min-height: 100vh;
   transition: background 0.25s, color 0.25s;
 }
 
@@ -171,4 +170,3 @@ input:focus, select:focus {
 * {
   transition: background 0.25s, color 0.25s, border 0.25s;
 }
-

@@ -5,6 +5,7 @@ import Converter from './components/Converter/Converter'
 import Alerts from './components/Alerts'
 import RatesTable from './components/RatesTable/RatesTable'
 import Footer from './components/Footer'
+import FeatureCards from './components/FeatureCards/FeatureCards'
 
 function App() {
   
@@ -12,6 +13,7 @@ function App() {
   return (
     <>
       <Header />
+      <FeatureCards/>
       <Converter />
       <Alerts />
       <RatesTable />
