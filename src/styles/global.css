@@ -13,13 +13,14 @@
   --color-primary: #646cff; /* botões, detalhes */
   --color-primary-hover: #7a80ff;
   --color-primary-foreground: #ffffff;
+  --colocor-pramary-details: #881ac7;
 
   /* CARTÕES */
   --color-card: #ffffff;
   --color-card-foreground: #1a1b1e;
 
   /* BORDAS */
-  --color-border: rgba(0, 0, 0, 0.12);
+  --color-border: rgba(80, 28, 102, 0.753);
 
   /* INPUTS */
   --color-input-background: #f3f3f5;
@@ -39,6 +40,8 @@
   --radius: 10px;
 
   --box-shadow: 0 4px 6px rgba(158, 29, 197, 0.589);
+
+  --accent: #646cff;
 }
 
 /* ----------------------------------------- */
@@ -55,6 +58,21 @@
       rgba(146, 16, 233, 0.534),
       transparent 55%
     ),
+    radial-gradient(
+      circle at 50% 150%,
+      rgba(146, 16, 233, 0.534),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 30% 150%,
+      rgba(146, 16, 233, 0.534),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 150%,
+      rgba(146, 16, 233, 0.534),
+      transparent 50%
+    ),
     #000000;
   --color-background-components: #121217;
   --color-foreground: #ac17e7;
@@ -68,7 +86,7 @@
   --color-card: #17171c;
   --color-card-foreground: #f5f5f5;
 
-  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border: rgba(163, 39, 212, 0.829);
 
   --color-input-background: #1b1b22;
   --color-input-foreground: #f5f5f5;
@@ -82,6 +100,8 @@
   --color-ring: #8f95ff;
 
   --box-shadow: 0 4px 6px rgba(179, 12, 230, 0.664);
+
+  --accent: #8f95ff;
 }
 
 /* ----------------------------------------- */
@@ -90,6 +110,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   
 }
 
@@ -98,7 +119,6 @@ body {
   font-size: var(--font-size);
   background: var(--color-background) !important;
   color: var(--color-foreground);
-  transition: background 0.25s, color 0.25s;
 }
 
 /* LINKS */
@@ -150,6 +170,7 @@ input:focus, select:focus {
   outline: 2px solid var(--color-ring);
 }
 
+
 /* ACENTOS */
 .accent {
   background: var(--color-accent);
@@ -169,4 +190,5 @@ input:focus, select:focus {
 /* TRANSIÇÃO MAIS SUAVE */
 * {
   transition: background 0.25s, color 0.25s, border 0.25s;
+  box-sizing: border-box;
 }

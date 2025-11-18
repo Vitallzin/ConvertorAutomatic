@@ -1,12 +1,11 @@
-footer {
-  width: 100%; 
+.footer{
   background-color: var(--color-background);
-  color: #656668;
-  padding: 35px 30px; /* aumenta a lateral para ficar igual ao site */
+  padding: 20px 0;
+  margin-top: 40px;
   border-top: 1px solid var(--color-border);
   font-family: 'Segoe UI', Roboto, sans-serif;
+  color: #656668;
   text-align: left;
-  box-sizing: border-box;
 }
 
 
@@ -14,18 +13,26 @@ footer {
 display: flex;
 justify-content: center;
 align-items: flex-start;
-gap: 40px;
+gap: 70px;
 flex-wrap: wrap;
+max-width: 1200px;
+margin: 0 auto;
+padding: 20px;
+border-bottom: 1px solid var(--color-border);
 }
 
 .footer-content p {
   margin: 6px 0;
   font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: left;
 }
 
 
 .footer-sobre {
   color: var(--color-foreground);
+  text-align: left;
+  max-width: 300px;
 }
 .footer-orientador {
   color: var(--color-foreground);
@@ -37,20 +44,29 @@ flex-wrap: wrap;
   margin-bottom: 5px;
   margin-right: 20px;
 }
-
 /* Estilo da lista de nomes */
 .footer-team ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0 auto;
-  display: inline-block;
-  text-align: left;
-  margin-top: -5px;
+  /* 1. Remove os marcadores padrão para que possamos adicionar os nossos */
+  list-style-type: none; 
+  padding-left: 0;       
+  margin-left: 0;
 }
-
 .footer-team li {
-  font-size: 1rem;
-  margin: 3px 0;
+  /* 2. Define a cor do TEXTO */
+  color: #919294; /* Ou a cor que você quiser para o nome */
+  position: relative; 
+  padding-left: 1.2em; /* Cria espaço para o novo marcador */
+  text-align: left;
+}
+.footer-team li::before {
+  /* 3. Adiciona o símbolo e define sua COR ESPECÍFICA */
+  content: "•";        
+  position: absolute;  
+  left: 7px;             
+  top: -4px;
+  color: var(--colocor-pramary-details); /* Use a cor desejada para a bolinha, por exemplo, azul */
+  font-weight: bold;   
+  font-size: 1.2em; /* Opcional: ajuste o tamanho da bolinha */
 }
 
 .footer-professor {
@@ -63,5 +79,5 @@ flex-wrap: wrap;
   margin-top: 12px;
   font-size: 0.85rem;
   font-weight: 500;
-
 }
+

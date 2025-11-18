@@ -3,7 +3,7 @@ import './Footer.css';
 
 function Footer() {
   return (
-    <footer>
+    <footer className='footer'>
       <div className="footer-content">
         {/* sobre o projeto*/}
         <div>
@@ -38,10 +38,12 @@ function Footer() {
           </ul>
         </div>
         
-
-        {/* Texto principal */}
-        <p>© 2025 API-Moeda. Todos os direitos reservados.</p>
+        
       </div>
+      <footer className='foote-final'>
+          {/* Texto principal */}
+          <p>© 2025 API-Moeda. Todos os direitos reservados.</p>
+        </footer>
     </footer>
   );
 }
