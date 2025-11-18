@@ -3,7 +3,6 @@ import './App.css'
 import Header from './components/Header'
 import Converter from './components/Converter/Converter'
 import Alerts from './components/Alerts'
-import RatesTable from './components/RatesTable/RatesTable'
 import Footer from './components/Footer'
 import FeatureCards from './components/FeatureCards/FeatureCards'
 
@@ -16,7 +15,6 @@ function App() {
       <FeatureCards/>
       <Converter />
       <Alerts />
-      <RatesTable />
       <Footer /> 
     </>
   )
