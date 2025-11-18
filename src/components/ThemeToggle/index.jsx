@@ -30,7 +30,7 @@ export default function ThemeToggle() {
       className={`theme-toggle ${theme === "dark" ? "is-active" : ""}`}
       onClick={toggle}
     >
-      {/* REVERTER PARA A TAG <img> */}
+      {/* REVERTER PARA A TAG <img> verdade */}
       <img
         src={theme === "dark" ? sol : lua}
         width="20"
