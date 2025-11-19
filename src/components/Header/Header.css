@@ -1,40 +1,55 @@
-/* Cabeçalho principal */
 .app-header {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background-color: var(--color-background-components);
-  color: #202124;
-  padding: 40px 20px;
-  border-bottom: 1px solid #dadce0;
+
+  padding: 10px 32px;
+  height: 48px;
+
+  background: var(--color-background-components);
+  border-bottom: 1px solid var(--color-border);
   box-shadow: var(--box-shadow);
+
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
-/* Container interno (para centralizar título e link) */
-.header-content {
-  text-align: center;
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  height: 100%;
 }
 
-/* Título principal */
-.header-content h1 {
-  font-size: 2rem;
-  font-weight: 600;
+.header-left a,
+.logo {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  padding: 0;
   margin: 0;
-  letter-spacing: 0.4px;
-}
-
-/* Link abaixo do título */
-.header-content a {
-  display: block;
-  margin-top: 6px;
-  color: #1a73e8;
-  text-decoration: none;
-  font-weight: 500;
   font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
   transition: color 0.3s, text-shadow 0.3s;
 }
 
-.header-content a:hover {
-  color: #1557b0;
-  text-shadow: 0 0 6px rgba(26, 115, 232, 0.3);
+.logo {
+  font-weight: 600;
+  /* ajuste fino opcional — ative se ainda ficar 1px fora */
+  /* transform: translateY(1px); */
+}
+
+.header-left a:hover {
+  color: var(--color-primary-hover);
+  text-shadow: 0 0 6px rgba(100, 108, 255, 0.3);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
