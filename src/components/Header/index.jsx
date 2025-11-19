@@ -3,10 +3,15 @@ import './Header.css';
 import ThemeToggle from '../ThemeToggle';
 
 function Header() {
+    const handleReloadClick = () => {
+    // Recarrega a página atual do navegador
+    window.location.reload();
+  };
+  
   return (
     <header className="app-header">
       <div className="header-left">
-        <a href="/" className="logo" target = "_blank">ConverterAutomatic</a>
+        <a onClick={handleReloadClick} className="logo">ConverterAutomatic</a>
         <a href="#">Ajuda</a>
         <a 
           href="https://www.exchangerate-api.com/" 
