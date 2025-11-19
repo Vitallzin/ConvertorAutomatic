@@ -21,7 +21,6 @@ function Header() {
           API Exchange
         </a>
       </div>
-
       <div className="header-right">
         <ThemeToggle />
       </div>

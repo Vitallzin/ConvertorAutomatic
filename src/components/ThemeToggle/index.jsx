@@ -31,7 +31,7 @@ export default function ThemeToggle() {
       onClick={toggle}
     >
       {/* REVERTER PARA A TAG <img> verdade */}
-      <img
+      <img 
         src={theme === "dark" ? sol : lua}
         width="20"
         height="20"

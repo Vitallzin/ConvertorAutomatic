@@ -1,9 +1,8 @@
 .theme-toggle {
-  background-color: var(--color-button);
+  background-color: var(--color-background);
   width: 42px;
   height: 42px;
   border-radius: 50%; 
-  border: 2px solid var(--color-border); 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,6 +14,6 @@
   box-shadow: 0 0 10px var(--color-primary);
 }
 .theme-toggle img {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }
