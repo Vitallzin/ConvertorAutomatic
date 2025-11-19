@@ -11,7 +11,7 @@ function Header() {
   return (
     <header className="app-header">
       <div className="header-left">
-        <a onClick={handleReloadClick} className="logo">ConverterAutomatic</a>
+        <a onClick={handleReloadClick} className="logo">ConvertorAutomatic</a>
         <a href="#">Ajuda</a>
         <a 
           href="https://www.exchangerate-api.com/" 
