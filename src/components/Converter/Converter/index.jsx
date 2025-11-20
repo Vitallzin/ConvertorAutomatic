@@ -1,130 +1,119 @@
-import React, { useState } from "react"; // importa React e useState
-import AmountInput from "../AmountInput"; // campo de entrada do valor
-import SwapButton from "../SwapButton"; // botão que inverte as moedas
-import ConvertButton from "../ConvertButton"; // botão que inicia a conversão
-import ResultBox from "../ResultBox"; // componente que exibe resultado e meta-info
-import CurrencySelectorFrom from "../CurrencySelectorFrom"; // seletor de moeda origem
-import CurrencySelectorTo from "../CurrencySelectorTo"; // seletor de moeda destino
-import "./Converter.css"; // estilos do conversor
-import { convertCurrency } from "../../../services/Api"; // função que busca taxas e calcula
-import RatesModal from "../../RatesTable/RatesTableModal";
+import React, { useState } from "react";
+import "./Converter.css";
+import Flag from "../../Flag";
+import AmountInput from "../AmountInput";
+import SwapButton from "../SwapButton";
 
-// Componente principal do conversor (versão ajustada para usar services/api.js)
-const Converter = () => {
-  const [amount, setAmount] = useState(""); // valor digitado pelo usuário
-  const [fromCurrency, setFromCurrency] = useState("USD"); // moeda de origem
-  const [toCurrency, setToCurrency] = useState("BRL"); // moeda de destino
-  const [result, setResult] = useState(null); // valor convertido
-  const [rate, setRate] = useState(null); // taxa retornada pela API
-  const [date, setDate] = useState(null); // data da última atualização
-  const [loading, setLoading] = useState(false); // estado de carregamento
-  const [isModalOpen, setIsModalOpen] = useState(false); // estado do modal
+export default function Converter() {
+  const [valor, setValor] = useState("");
+  const [de, setDe] = useState("USD");
+  const [para, setPara] = useState("BRL");
+  const [resultado, setResultado] = useState(null);
+  const [taxa, setTaxa] = useState(null);
 
-  // Inverte as moedas selecionadas e limpa resultado
-  const handleSwap = () => {
-    const temp = fromCurrency; // guarda temporariamente fromCurrency
-    setFromCurrency(toCurrency); // seta fromCurrency com o anterior toCurrency
-    setToCurrency(temp); // seta toCurrency com o valor temporário
-    setResult(null); // limpa resultado anterior
-  };
-  // Função para abrir o modal
-  const handleOpenModal = () => setIsModalOpen(true);
+  // Busca as taxas quando muda a moeda "de"
+  React.useEffect(() => {
+    const fetchTaxas = async () => {
+      if (!de || !para) return;
 
-  // Função para fechar o modal
-  const handleCloseModal = () => setIsModalOpen(false);
+      try {
+        const apiUrl = import.meta.env.VITE_API_BASE_URL || "https://open.er-api.com/v6";
+        const response = await fetch(`${apiUrl}/latest/${de}`);
 
-  // Executa a conversão usando a função do serviço
-  const handleConvert = async () => {
-    if (!amount) { // valida entrada
-      alert("Por favor, digite um valor!"); // avisa usuário
-      return; // sai sem converter
+        if (!response.ok) {
+          throw new Error("Erro ao buscar taxas de câmbio");
+        }
+
+        const data = await response.json();
+        const taxas = data.conversion_rates || data.rates || {};
+        const taxaConversao = taxas[para];
+
+        if (!taxaConversao) {
+          throw new Error(`Moeda ${para} não encontrada`);
+        }
+
+        setTaxa(taxaConversao);
+      } catch (error) {
+        console.error("Erro:", error);
+      }
+    };
+
+    fetchTaxas();
+  }, [de, para]);
+
+  // Atualiza o resultado em tempo real conforme o usuário digita
+  React.useEffect(() => {
+    if (valor && taxa) {
+      const total = valor * taxa;
+      setResultado(total);
+    } else {
+      setResultado(null);
     }
+  }, [valor, taxa]);
 
-    try {
-      setLoading(true); // ativa loading
-
-      // chamada ao serviço que retorna { result, rate, lastUpdate, raw }
-      const response = await convertCurrency(fromCurrency, toCurrency, Number(amount));
-
-      setResult(response.result); // armazena valor convertido (numérico)
-      setRate(response.rate); // armazena taxa
-      setDate(response.lastUpdate); // armazena data de atualização
-    } catch (err) {
-      console.error("Erro na conversão:", err); // log detalhado
-      alert(`Erro ao converter: ${err && err.message ? err.message : String(err)}`); // mostra mensagem ao usuário
-    } finally {
-      setLoading(false); // garante desligar loading
-    }
+  const trocarMoedas = () => {
+    const temp = de;
+    setDe(para);
+    setPara(temp);
   };
 
-  // JSX do componente com comentários inline para facilitar leitura
   return (
-    <div className="converter-container">{/* container principal */}
-      <h2 className="converter-title"> Sistema de Conversão</h2>{/* título */}
+    <div className="conv-box">
+      <h1 className="conv-title">Conversor de Moeda</h1>
 
-      <AmountInput
-        value={amount}
-        onChange={(v) => {
-          setAmount(v); // atualiza valor
-          setResult(null); // limpa resultado ao editar para evitar inconsistências
-          setRate(null); // limpa taxa associada
-          setDate(null); // limpa data
-        }}
-      />{/* campo de valor */}
-
-      <div className="converter-selectors">{/* área dos seletores */}
-        <CurrencySelectorFrom
-          fromCurrency={fromCurrency} // valor atual de origem
-          setFromCurrency={setFromCurrency} // função para alterar origem
-        />{/* seletor de moeda origem */}
-
-        <SwapButton onClick={handleSwap} />{/* botão que inverte moedas */}
-
-        <CurrencySelectorTo
-          toCurrency={toCurrency} // valor atual de destino
-          setToCurrency={setToCurrency} // função para alterar destino
-        />{/* seletor de moeda destino */}
+      {/* COMPONENTE 1: AmountInput */}
+      <div className="conv-field">
+        <label>Valor</label>
+        <AmountInput value={valor} onChange={setValor} />
       </div>
 
-      <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-        <ConvertButton onClick={handleConvert} loading={loading} />{/* botão Converter */}
-        <button
-          type="button"
-          className="clear-button"
-          onClick={() => {
-            setResult(null); // limpa resultado manualmente
-            setRate(null);
-            setDate(null);
-            setAmount("");
-          }}
-        >
-          Limpar
-        </button>
+      <div className="conv-row">
+        {/* SELETOR DE/PARA */}
+        <div className="conv-field">
+          <label>DE</label>
+          <div className="conv-select-wrapper">
+            <Flag code={de} />
+            <select 
+              className="conv-select" 
+              value={de} 
+              onChange={(e) => setDe(e.target.value)}
+            >
+              <option value="USD">USD - Dólar</option>
+              <option value="EUR">EUR - Euro</option>
+              <option value="BRL">BRL - Real</option>
+              <option value="GBP">GBP - Libra</option>
+              <option value="JPY">JPY - Iene</option>
+            </select>
+          </div>
+        </div>
+
+        {/* COMPONENTE 5: SwapButton */}
+        <SwapButton onClick={trocarMoedas} />
+
+        <div className="conv-field">
+          <label>PARA</label>
+          <div className="conv-select-wrapper">
+            <Flag code={para} />
+            <select 
+              className="conv-select" 
+              value={para} 
+              onChange={(e) => setPara(e.target.value)}
+            >
+              <option value="BRL">BRL - Real</option>
+              <option value="USD">USD - Dólar</option>
+              <option value="EUR">EUR - Euro</option>
+              <option value="GBP">GBP - Libra</option>
+              <option value="JPY">JPY - Iene</option>
+            </select>
+          </div>
+        </div>
       </div>
 
-      <ResultBox
-        amount={amount} // valor enviado para exibição
-        converted={result} // valor convertido (numérico)
-        rate={rate} // taxa utilizada
-        date={date} // data da taxa
-        base={fromCurrency} // moeda base
-        target={toCurrency} // moeda alvo
-      />{/* caixa de resultado */}
-      
+      {/* BOTÃO RESULTADO - Mostra o valor em tempo real */}
+              <div className="resultado-box">
+                Resultado: {resultado !== null ? `${Number(resultado).toFixed(2)} ${para}` : ""}
+              </div>
 
-      {/* Botão para ABRIR o Modal */}
-      <button onClick={handleOpenModal}>
-        Ver Taxas Completas
-      </button>
-
-      {/* Renderização CONDICIONAL do Modal */}
-      {isModalOpen && (
-        <RatesModal onClose={handleCloseModal} />
-      )}
-      
     </div>
-  
   );
-};
-
-export default Converter;
+}
