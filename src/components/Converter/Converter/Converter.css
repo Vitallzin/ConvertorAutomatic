@@ -1,72 +1,189 @@
-/* Converter.css
-	 Estilos do container do componente Converter e elementos internos.
-	 Comentários explicam o propósito de cada bloco para facilitar manutenção.
-*/
+.conv-box {
+  width: 700px;           
+  max-width: 95%;        
+  margin: 40px auto;
+  background: white;
+  padding: 32px 28px;   
+  border-radius: 14px;   
+  box-shadow: 0px 5px 25px rgba(0,0,0,0.20);
+  font-family: Arial, sans-serif;
+  transform: scale(1.15);
+  transform-origin: top center;
 
-/* Estilos do container principal do conversor */
-.converter-container {
-	background: var(--color-background-components);
-	color: var(--color-foreground);
-	border: 1px solid var(--color-border);
-	border-radius: var(--radius);
-	padding: 20px;
-	max-width: 400px;
-	margin: 20px auto;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* título do conversor */
-.converter-title {
-	text-align: center;
-	margin: 0 0 12px 0;
+.conv-title {
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-/* área que contém os seletores e o botão de swap */
-.converter-selectors {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-top: 10px;
+.conv-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
 }
 
-/* estilos aplicados aos <select> dentro dos CurrencySelector components */
-.currency-selector select {
-	padding: 8px;
-	border-radius: 6px;
-	border: 1px solid #ccc;
-	background: #fff;
-	color: #000;
+.conv-field label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 
-/* container do seletor que alinha a bandeira e o select */
-.currency-selector {
-	display: flex;
-	align-items: center;
-	gap: 8px;
+.conv-select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  background: white;
 }
 
-/* ajuste específico para botões dentro de .converter-selectors (ex: SwapButton) */
-.converter-selectors > button {
-	padding: 8px 12px;
-	border-radius: 8px;
-	border: none;
-	background: var(--color-primary);
-	color: var(--color-primary-foreground);
-	cursor: pointer;
-	transition: background 0.25s;
+.conv-select-wrapper img {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
 }
 
-/* botão Limpar ao lado do ConvertButton */
-.clear-button {
-	padding: 10px 12px;
-	border-radius: 8px;
-	border: none;
-	background: #777;
-	color: #fff;
-	cursor: pointer;
+.conv-select,
+.conv-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
 }
 
-.clear-button:hover {
-	background: #666;
+.conv-select {
+  flex: 1;
+  border: none;
 }
 
+.conv-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.conv-row .conv-field {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.conv-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.conv-btn:hover:not(:disabled) {
+  background: #005ecb;
+}
+
+.conv-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.conv-error {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  border: 1px solid #f5c6cb;
+}
+
+.resultado-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  letter-spacing: 0.5px;
+}
+
+.resultado-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6);
+}
+
+.resultado-btn:active {
+  transform: translateY(0);
+}
+
+.conv-result {
+  background: #d4edda;
+  color: #155724;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #c3e6cb;
+}
+
+.conv-result p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.resultado-box {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.resultado-titulo {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.resultado-valor {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.resultado-taxa {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.resultado-data {
+  margin: 0;
+  font-size: 11px;
+  opacity: 0.8;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 8px;
+}
