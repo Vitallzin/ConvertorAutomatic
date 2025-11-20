@@ -1,0 +1,35 @@
+/* SwapButton.css
+   Estilos para o botão de swap (ícone 🔁) utilizado entre os seletores
+*/
+button.swap-button,
+.swap-button {
+  /* Usa variáveis de tema para claro/escuro definidas em global.css */
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: var(--color-primary-foreground, #fff);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--box-shadow, 0 4px 10px rgba(118,75,162,0.18));
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.swap-button:focus {
+  outline: 2px solid var(--color-ring, rgba(118,75,162,0.35));
+}
+
+.swap-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+.swap-button img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
