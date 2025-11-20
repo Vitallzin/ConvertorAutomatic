@@ -1,67 +1,57 @@
-import React from "react"; // importa React
-import "./ResultBox.css"; // importa estilos do ResultBox
+import React from "react";
+import "./ResultBox.css";
 
-// Componente que exibe o resultado da conversão e informações auxiliares
-const ResultBox = ({ amount, converted, rate, date, base, target }) => {
-  // Se não houver valor convertido, não renderiza nada
-  if (converted === undefined || converted === null) return null; // retorno nulo evita exibir caixa vazia
+// O componente ResultBox AGORA recebe 'minimal' e o prop 'targetSymbol'
+const ResultBox = ({converted, targetSymbol, minimal = false }) => {
+  // Se não houver valor convertido E não for o modo minimal, não renderiza nada
+  if (converted === undefined || converted === null) {
+      if (minimal) {
+          // No modo minimal, exibe um placeholder para manter o layout
+          return <div className="result-box minimal">{targetSymbol}0.00</div>;
+      }
+      return null;
+  }
 
   // Tornar a renderização mais defensiva: capturar possíveis exceções ao formatar
-  let formattedConverted, formattedRate, formattedInverse, localDate;
+  let formattedConverted;
   try {
+    // ... (restante da lógica de formatação de valores e data)
+    // ...
     // Configurações de casas decimais
-    const AMOUNT_DECIMALS = target === "BRL" ? 0 : 2; // menos casas para BRL conforme pedido
-    const RATE_DECIMALS = 4; // casas decimais para taxa exibida
-    const INVERSE_DECIMALS = 6; // casas para a taxa invertida
-
+    // Adaptei para usar 2 casas, um padrão mais universal
+    const AMOUNT_DECIMALS = 2; 
     // Formatação dos valores numéricos
-    formattedConverted = Number(converted).toFixed(AMOUNT_DECIMALS); // valor convertido formatado
-    formattedRate = rate !== undefined && rate !== null ? Number(rate).toFixed(RATE_DECIMALS) : "—"; // taxa formatada
-    formattedInverse = rate ? (1 / Number(rate)).toFixed(INVERSE_DECIMALS) : "—"; // taxa invertida formatada
-
-    // Converte a data (UTC) para o fuso de São Paulo para exibir na UI
-    localDate = date
-      ? (() => {
-          try {
-            return new Date(date).toLocaleString("pt-BR", {
-              timeZone: "America/Sao_Paulo", // fuso de São Paulo
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
-              hour12: false,
-            });
-          } catch {
-            return String(date); // fallback: retorna string original se parsing falhar
-          }
-        })()
-      : "—"; // se não houver data, mostra traço
+    formattedConverted = Number(converted).toFixed(AMOUNT_DECIMALS); 
+    ;
   } catch (formatErr) {
-    // Se algo inesperado acontecer durante a formatação, log e renderiza fallback leve
-    console.error("Erro ao formatar ResultBox:", formatErr, { amount, converted, rate, date, base, target });
+    console.error("Erro ao formatar ResultBox:", formatErr);
     return (
-      <div className="result-box">
+      <div className={`result-box ${minimal ? 'minimal' : ''}`}>
         <p className="result-main">Erro ao exibir resultado</p>
-        <p className="result-meta">Verifique o console para detalhes</p>
       </div>
     );
   }
 
+  // Adiciona a classe 'minimal' se a prop for verdadeira
+  const boxClass = `result-box ${minimal ? 'minimal' : ''}`;
+
+  // Se for o modo minimal, exibe apenas a linha principal
+  if (minimal) {
+      return (
+          <div className={boxClass}>
+              {/* No modo minimal, exibimos apenas o valor e o código da moeda alvo */}
+              <p className="result-main">
+                  {targetSymbol}{formattedConverted}
+              </p>
+          </div>
+      );
+  }
+
+  // Modo Completo (padrão)
   return (
-    <div className="result-box"> {/* container principal do resultado */}
-      <p className="result-main"> {/* linha principal com valor convertido */}
-        {amount} {base} = {formattedConverted} {target}
-      </p>
-      <p className="result-meta"> {/* taxa e data */}
-        Taxa usada: {formattedRate} | Atualizado em: {localDate}
-      </p>
-      <p className="result-small"> {/* informação adicional com taxa invertida */}
-        1 {base} = {formattedRate} {target} • 1 {target} = {formattedInverse} {base}
-      </p>
-    </div>
+    <>
+    </>
   );
 };
 
-export default ResultBox; // exporta componente
+export default ResultBox;

@@ -7,7 +7,8 @@ const SwapButton = ({ onClick }) => (
     className="swap-button" // classe CSS para aparência
     onClick={onClick} // evento chamado ao clicar
   >
-    🔁{/* ícone de swap */}
+    {/* Ícone customizado para corresponder ao design: usando uma classe CSS */}
+    <span className="conv-swap-icon">↑↓</span> 
   </button>
 );
 

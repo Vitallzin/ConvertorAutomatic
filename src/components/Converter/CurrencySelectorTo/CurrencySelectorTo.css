@@ -1,23 +1,34 @@
 /* CurrencySelectorTo.css
-   Estilos para o seletor de moeda destino. Similar ao From, com pequenas diferenças se necessário.
+   Estilos para o seletor de moeda destino (integrado no conv-input-group)
 */
-.currency-selector {
-  display: flex; /* layout em linha */
-  align-items: center; /* centraliza verticalmente */
-  gap: 10px; /* espaço entre bandeira e seletor */
-  margin: 8px 0; /* margem vertical */
+
+/* Estilo para o modo minimal (dentro de conv-input-group) */
+.currency-selector-minimal {
+    display: flex;
+    align-items: center;
+    /* Linha vertical separadora */
+    border-left: 1px solid var(--color-border);
+    background-color: var(--color-input-background);
 }
 
-.currency-selector select {
-  padding: 6px 10px; /* padding interno */
-  border-radius: 8px; /* cantos arredondados */
-  border: 1px solid #ccc; /* borda neutra */
-  background-color: #f8f8f8; /* fundo claro */
-  color: #000000; /* cor do texto */
-  font-size: 14px; /* tamanho do texto */
-  cursor: pointer; /* cursor clickável */
+.currency-selector-minimal select {
+  /* Remove estilos de borda e background que serão herdados/controlados pelo container */
+  border: none;
+  background-color: transparent;
+  color: var(--color-foreground); /* Cor de destaque roxa para o texto do select */
+  font-weight: 500;
+  padding: 0 15px 0 0; /* Ajusta o padding */
+  /* Remove o ícone de seta padrão do select (necessário para o visual da imagem) */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  height: 100%; /* Ocupa a altura total */
 }
 
-.currency-selector select:hover {
-  border-color: #999; /* muda cor da borda ao passar o mouse */
+/* Estilo para a bandeira minimal (se o componente Flag suportar uma classe) */
+.currency-selector-minimal .flag-minimal {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
 }

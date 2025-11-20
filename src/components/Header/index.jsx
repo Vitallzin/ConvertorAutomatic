@@ -20,6 +20,13 @@ function Header() {
         >
           API Exchange
         </a>
+        <a
+          href="https://flagsapi.com/#countries"
+          target="_blank" 
+          rel="noreferrer"
+          >
+          API CountryFlag
+        </a>
       </div>
       <div className="header-right">
         <ThemeToggle />

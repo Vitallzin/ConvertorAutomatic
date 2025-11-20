@@ -1,72 +1,90 @@
 /* Converter.css
 	 Estilos do container do componente Converter e elementos internos.
-	 Comentários explicam o propósito de cada bloco para facilitar manutenção.
+	 Baseado no design da imagem.
 */
 
 /* Estilos do container principal do conversor */
-.converter-container {
-	background: var(--color-background-components);
-	color: var(--color-foreground);
-	border: 1px solid var(--color-border);
+.conv-box {
+	width: 700px; /* Reduzido para parecer mais compacto como na imagem */
+	/* Variáveis do global.css */
+	background: var(--color-background-components); /* Fundo do componente (escuro no tema dark) */
+	color: var(--color-foreground); /* Cor do texto principal (roxo/claro no dark) */
+	border: 1px solid var(--color-border); /* Borda */
 	border-radius: var(--radius);
-	padding: 20px;
-	max-width: 400px;
+	padding: 30px; /* Mais padding */
 	margin: 20px auto;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	box-shadow: var(--box-shadow); /* Sombra roxa no dark */
 }
 
-/* título do conversor */
-.converter-title {
+/* Título */
+.conv-title {
 	text-align: center;
-	margin: 0 0 12px 0;
+	margin-bottom: 5px;
+	font-size: 24px; /* Maior que antes */
+	color: var(--color-foreground); /* Garante a cor de destaque (roxo) */
+	font-weight: 700;
 }
 
-/* área que contém os seletores e o botão de swap */
-.converter-selectors {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-top: 10px;
+/* Subtítulo */
+.conv-subtitle {
+    text-align: center;
+    color: var(--color-muted-foreground); /* Cor mais suave para o subtítulo */
+    margin: 0 0 30px 0;
+    font-size: 14px;
 }
 
-/* estilos aplicados aos <select> dentro dos CurrencySelector components */
-.currency-selector select {
-	padding: 8px;
-	border-radius: 6px;
-	border: 1px solid #ccc;
-	background: #fff;
-	color: #000;
+/* Container para cada campo (De / Para) */
+.conv-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px; /* Espaço entre campos */
+	padding: 20px;
 }
 
-/* container do seletor que alinha a bandeira e o select */
-.currency-selector {
-	display: flex;
-	align-items: center;
-	gap: 8px;
+/* Label (De / Para) */
+.conv-field label {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-muted-foreground); /* Cor mais suave (Cinza escuro/roxo claro) */
+    margin-bottom: 5px;
 }
 
-/* ajuste específico para botões dentro de .converter-selectors (ex: SwapButton) */
-.converter-selectors > button {
-	padding: 8px 12px;
-	border-radius: 8px;
-	border: none;
-	background: var(--color-primary);
-	color: var(--color-primary-foreground);
-	cursor: pointer;
-	transition: background 0.25s;
+/* Container que agrupa Input/Result e Selector no mesmo nível */
+.conv-input-group {
+    display: flex;
+    align-items: stretch; /* Garante que os filhos tenham a mesma altura */
+    border: 1px solid var(--color-border); /* Borda única para o grupo */
+    border-radius: var(--radius);
+    overflow: hidden; /* Garante que os cantos arredondados funcionem */
+    /* Garante que o input e o select fiquem do mesmo tamanho */
+    height: 55px; /* Altura fixa para alinhar com o design */
 }
 
-/* botão Limpar ao lado do ConvertButton */
-.clear-button {
-	padding: 10px 12px;
-	border-radius: 8px;
-	border: none;
-	background: #777;
-	color: #fff;
-	cursor: pointer;
+/* Estilo para o componente SwapButton centrado */
+.conv-swap-container {
+    text-align: center;
+    margin: -10px 0; /* Puxa para cima para sobrepor a borda do input group */
+    z-index: 10;
 }
 
-.clear-button:hover {
-	background: #666;
+/* Botão principal (Ver Tabela de Taxas) */
+.conv-btn-main {
+    width: 100%;
+    /* Cor de fundo roxa sólida (ajustada para um roxo mais forte) */
+    background: #881AC7; 
+    color: var(--color-primary-foreground);
+    border: none;
+    padding: 15px;
+    margin-top: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: var(--radius);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(136, 26, 199, 0.4);
+    transition: background 0.2s, box-shadow 0.2s;
 }
 
+.conv-btn-main:hover {
+    background: #9d2ae2; /* Roxo ligeiramente mais claro no hover */
+    box-shadow: 0 6px 15px rgba(136, 26, 199, 0.6);
+}

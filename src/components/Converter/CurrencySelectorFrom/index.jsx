@@ -6,13 +6,17 @@ import './CurrencySelectorFrom.css'; // importa estilos específicos do seletor
 const currencies = ['USD', 'BRL', 'EUR', 'JPY', 'GBP'];
 
 // Componente que renderiza o seletor da moeda de origem
-function CurrencySelectorFrom({ fromCurrency, setFromCurrency }) {
+// Adicionado 'minimal' para saber como renderizar (integrado ao input)
+function CurrencySelectorFrom({ fromCurrency, setFromCurrency, minimal }) {
+  // A classe 'currency-selector' é ajustada para o estilo minimal
   return (
-    <div className="currency-selector">{/* container do seletor + bandeira */}
-      <Flag currency={fromCurrency} />{/* componente que mostra a bandeira da moeda atual */}
+    <div className={minimal ? "currency-selector-minimal" : "currency-selector"}>{/* container do seletor + bandeira */}
+      {/* Se estiver no modo minimal, a bandeira é renderizada aqui, ao lado do select, para o visual integrado */}
+      {minimal && <Flag currency={fromCurrency} minimal={true} />} 
       <select
         value={fromCurrency} // valor atualmente selecionado no select
         onChange={(e) => setFromCurrency(e.target.value)} // atualiza o estado quando o usuário muda
+        className={minimal ? "currency-select-minimal" : ""} // Classe para estilizar o select minimal
       >
         { /* Gera um <option> para cada moeda disponível */ }
         {currencies.map((code) => (

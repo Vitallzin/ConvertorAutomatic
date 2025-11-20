@@ -5,7 +5,7 @@
   align-items: center;
   padding: 10px 32px;
   height: 48px;
-  background: var(--color-background-components);
+  background: var(--color-primary-foreground);
   border-bottom: 1px solid var(--color-border);
   box-shadow: var(--box-shadow);
   position: sticky;

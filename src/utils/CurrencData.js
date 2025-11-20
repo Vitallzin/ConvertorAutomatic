@@ -1,3 +1,5 @@
+import EU from '../../public/EU.png';
+
 export const currencyData = {
 AED:{country:"AE",symbol:"د.إ",name:"Emirados Árabes Unidos"}, AFN:{country:"AF",symbol:"؋",name:"Afeganistão"},
 ALL:{country:"AL",symbol:"L",name:"Albânia"}, AMD:{country:"AM",symbol:"֏",name:"Armênia"},
@@ -24,7 +26,7 @@ DJF:{country:"DJ",symbol:"Fdj",name:"Djibouti"}, DKK:{country:"DK",symbol:"kr",n
 DOP:{country:"DO",symbol:"$",name:"República Dominicana"}, DZD:{country:"DZ",symbol:"دج",name:"Argélia"},
 
 EGP:{country:"EG",symbol:"£",name:"Egito"}, ERN:{country:"ER",symbol:"Nfk",name:"Eritreia"},
-ETB:{country:"ET",symbol:"Br",name:"Etiópia"}, EUR:{country:"EU",symbol:"€",name:"União Europeia"},
+ETB:{country:"ET",symbol:"Br",name:"Etiópia"}, EUR:{country:"EU",symbol:"€",name:"União Europeia", flag:EU},
 
 FJD:{country:"FJ",symbol:"$",name:"Fiji"}, FKP:{country:"FK",symbol:"£",name:"Ilhas Falkland"},
 FOK:{country:"FO",symbol:"kr",name:"Ilhas Faroe"},

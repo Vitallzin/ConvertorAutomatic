@@ -1,36 +1,46 @@
-/* ResultBox.css
-	 Estilos do componente ResultBox. Cada classe formata uma parte do resultado:
-	 - .result-box: container
-	 - .result-main: linha principal
-	 - .result-meta: taxa e data
-	 - .result-small: info auxiliar (taxa invertida)
-*/
+/* RESULT BOX — versão integrada ao estilo do AmountInput */
 
+/* Caixa geral do resultado */
 .result-box {
-	margin-top: 20px;
-	text-align: center;
-	font-size: 18px;
-	background-color: #333;
-	padding: 10px;
-	border-radius: 8px;
+  display: flex;
+  gap: 6px;
+  background: var(--color-input-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  width: 100%;
+  box-sizing: border-box;
+  color: gray;
+  font-family: inherit;
+  font-size: 1.09rem;
 }
 
-/* linha principal que mostra a conversão */
+/* Linha principal do resultado */
 .result-main {
-	margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-background);
 }
 
-/* linha que mostra a taxa usada e a data */
-.result-meta {
-	font-size: 14px;
-	color: #ccc;
-	margin-top: 5px;
-}
+/* Linha com taxa e data */
 
-/* linha menor que mostra a taxa invertida e info suplementar */
+
+/* Linha do valor inverso */
 .result-small {
-	font-size: 12px;
-	color: #aaa;
-	margin-top: 4px;
+  font-size: 0.875rem;
+  margin: 0;
+  opacity: 0.8;
+  color: var(--color-input-foreground);
+}
+
+/* Placeholder para antes da conversão */
+.result-box.minimal {
+  padding: 12px 14px;
+  text-align: left;
+}
+
+.result-box.minimal .result-main {
+  opacity: 1;
+  font-weight: normal;
 }
 

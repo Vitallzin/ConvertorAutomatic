@@ -1,17 +1,47 @@
 /* SwapButton.css
-   Estilos para o botão de swap (ícone 🔁) utilizado entre os seletores
+   Estilos para o botão de swap (ícone de seta dupla)
 */
+button.swap-button,
 .swap-button {
-  background-color: #444; /* cor de fundo */
-  color: #fff; /* cor do ícone/texto */
-  border: none; /* sem borda */
-  border-radius: 6px; /* cantos arredondados */
-  padding: 8px 12px; /* espaçamento interno */
-  margin: 0 10px; /* margem lateral para afastar dos seletores */
-  cursor: pointer; /* cursor pointer ao passar o mouse */
-  font-size: 18px; /* tamanho do ícone */
+  /* Alinhamento */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Formato */
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; /* Faz o botão ser um círculo */
+  padding: 0; 
+  margin: 0 auto; 
+
+  /* Cores */
+  background: none; /* Azul/Escuro */
+  color: var(--color-primary-foreground); /* Branco/Claro */
+  border: 1px solid var(--color-border); /* Borda */
+  cursor: pointer;
+  
+  /* Efeitos */
+  box-shadow: var(--box-shadow);
+  transition: all 0.25s ease;
+  z-index: 20; 
+}
+
+.swap-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
 }
 
 .swap-button:focus {
-  outline: 2px solid #6b6b6b; /* destaque quando em foco */
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+/* Estilo do ícone de seta dupla */
+.conv-swap-icon {
+    font-size: 18px;
+    line-height: 1;
+    color: var(--colocor-pramary-details);
+    /* Ajuste visual para o ícone */
+    transform: rotate(90deg); /* Rotaciona o ↑↓ para parecer mais com a seta do design */
+    display: inline-block;
 }

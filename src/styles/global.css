@@ -11,7 +11,7 @@
   --color-button: #ffffff;
 
   /* ROXO PRINCIPAL (FIGMA) */
-  --color-primary: #646cff; /* botões, detalhes */
+  --color-primary: #b964ff; /* botões, detalhes */
   --color-primary-hover: #7a80ff;
   --color-primary-foreground: #ffffff;
   --colocor-pramary-details: #881ac7;
@@ -75,14 +75,15 @@
       transparent 50%
     ),
     #000000;
-  --color-background-components: #121217;
+  --color-background-components: #1b1b2b;
   --color-foreground: #ac17e7;
   --color-button: #ffffff;
 
   /* ROXO ESCURO E MAIS SATURADO (figma dark) */
-  --color-primary: #a5abff;
+  --color-primary: #c157eb;
   --color-primary-hover: #a5abff;
   --color-primary-foreground: #0d0d10;
+  --colocor-pramary-details: #bb3ff5;
 
   --color-card: #17171c;
   --color-card-foreground: #f5f5f5;

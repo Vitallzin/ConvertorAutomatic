@@ -42,7 +42,7 @@ function Footer() {
       </div>
       <footer className='foote-final'>
           {/* Texto principal */}
-          <p>© 2025 API-Moeda. Todos os direitos reservados.</p>
+          <p>© 2025 ConvertorAutomatic. Todos os direitos reservados | V1.0</p>
         </footer>
     </footer>
   );
