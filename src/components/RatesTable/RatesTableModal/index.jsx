@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./RatesTableModal.css";
 import { getRates } from "../../../services/Api";
 import Flag from "../../Flag";
+// 1. IMPORTAR DADOS DE MOEDA
+import { currencyData } from "../../../utils/CurrencData"; // <--- ATENÇÃO: Verifique e ajuste este caminho conforme a sua estrutura!
 
 function RatesModal({ onClose }) {
   const [baseCurrency, setBaseCurrency] = useState("USD");
@@ -108,7 +110,8 @@ function RatesModal({ onClose }) {
             {allCurrencies.length > 0 ? (
               allCurrencies.map((currency) => (
                 <option key={currency} value={currency}>
-                  {currency}
+                  {/* 2. EXIBINDO O NOME COMPLETO NO DROPDOWN */}
+                  {currencyData[currency]?.namecomplete || currency} ({currency})
                 </option>
               ))
             ) : (
@@ -135,17 +138,27 @@ function RatesModal({ onClose }) {
               </tr>
             </thead>
             <tbody>
-              {Object.entries(rates).map(([currency, rate]) => (
-                <tr key={currency}>
-                  <td className="currency-cell">
-                    <Flag currency={currency} />
-                    {currency}
-                  </td>
-                  <td>{currency}</td>
-                  <td>{Number(rate || 0).toFixed(4)}</td>
-                  <td>{(1 * rate).toFixed(4)} {currency}</td>
-                </tr>
-              ))}
+              {Object.entries(rates).map(([currency, rate]) => {
+                // Obtém a informação da moeda, se existir
+                const currencyInfo = currencyData[currency] || {};
+                // Usa o nome completo, senão o nome curto, senão o código
+                const displayName = currencyInfo.namecomplete || currencyInfo.name || currency;
+
+                return (
+                  <tr key={currency}>
+                    <td className="currency-cell">
+                      <Flag currency={currency} />
+                      {/* 3. EXIBINDO O NOME COMPLETO NA TABELA */}
+                      {displayName}
+                    </td>
+                    <td>{currency}</td>
+                    {/* ALTERAÇÃO 1: Taxa agora com 2 casas decimais */}
+                    <td>{Number(rate || 0).toFixed(2)}</td> 
+                    {/* ALTERAÇÃO 2: Valor de 1 {baseCurrency} agora com 2 casas decimais */}
+                    <td>{(1 * rate).toFixed(2)} {currency}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         )}

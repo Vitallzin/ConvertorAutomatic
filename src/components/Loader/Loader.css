@@ -1,0 +1,32 @@
+/* Loader.css */
+
+/* Centraliza o loader na tela inteira */
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa a altura total da viewport */
+    width: 100%;
+    /* Usa a cor de fundo do tema se for o caso, senão, use uma cor sólida */
+    background: var(--color-background);
+}
+
+/* Estilo do Círculo Giratório */
+.loader {
+    border: 5px solid var(--color-muted); /* Cor do trilho (fundo) */
+    border-top: 5px solid var(--color-primary); /* Cor da parte giratória */
+    border-radius: 50%; /* Transforma em círculo */
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite; /* Aplica a animação */
+}
+
+/* Keyframes para a animação de rotação */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

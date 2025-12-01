@@ -1,34 +1,54 @@
-/* CurrencySelectorTo.css
-   Estilos para o seletor de moeda destino (integrado no conv-input-group)
-*/
+/* CONTAINER PADRÃO */
+.currency-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
-/* Estilo para o modo minimal (dentro de conv-input-group) */
+/* CONTAINER MINIMAL */
 .currency-selector-minimal {
-    display: flex;
-    align-items: center;
-    /* Linha vertical separadora */
-    border-left: 1px solid var(--color-border);
-    background-color: var(--color-input-background);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-input-background);
+  border: 1px solid var(--color-border);
+  padding: 8px 12px;
+  border-radius: 10px;
 }
 
-.currency-selector-minimal select {
-  /* Remove estilos de borda e background que serão herdados/controlados pelo container */
-  border: none;
-  background-color: transparent;
-  color: var(--color-foreground); /* Cor de destaque roxa para o texto do select */
-  font-weight: 500;
-  padding: 0 15px 0 0; /* Ajusta o padding */
-  /* Remove o ícone de seta padrão do select (necessário para o visual da imagem) */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  height: 100%; /* Ocupa a altura total */
+/* SELECT PADRÃO */
+.currency-selector select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-foreground);
+  font-size: 1rem;
+  outline: none;
 }
 
-/* Estilo para a bandeira minimal (se o componente Flag suportar uma classe) */
-.currency-selector-minimal .flag-minimal {
-    width: 20px;
-    height: 20px;
-    margin-left: 10px;
+.currency-selector select:hover {
+  border-color: var(--secondary);
+}
+
+/* SELECT MINIMAL */
+.currency-select-minimal {
+  flex: 1;
+  border: none !important;
+  background: transparent !important;
+  font-size: 1rem;
+  color: var(--color-foreground);
+  outline: none;
+}
+
+.currency-select-minimal option {
+  color: black; /* Dropdown sempre claro */
+}
+
+/* Bandeira no modo minimal */
+.currency-selector-minimal img {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
 }

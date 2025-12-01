@@ -42,7 +42,7 @@ function Footer() {
       </div>
       <footer className='foote-final'>
           {/* Texto principal */}
-          <p>© 2025 ConvertorAutomatic. Todos os direitos reservados | V1.0</p>
+          <p>© 2025 ConvertorAutomatic. Todos os direitos reservados | V1.1.5</p>
         </footer>
     </footer>
   );
