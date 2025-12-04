@@ -20,13 +20,13 @@ function AddRatesTable({
           placeholder="Buscar moeda para adicionar (ex: EUR, AUD, CAD...)"
           value={searchTerm} // Valor do input controlado
           onChange={(e) => onSearchChange(e.target.value)}
-          onFocus={onFocus}
-          onBlur={onBlur}
+          onFocus={onFocus} // Evento onFocus
+          onBlur={onBlur} // Evento onBlur
           className="rates-search-input"
           autoComplete="off"
         />
 
-        {/* ✅ Dropdown de sugestões */}
+        {/*  Dropdown de sugestões */}
         {showSuggestions && suggestions.length > 0 && (
           <div className="suggestions-dropdown">
             {suggestions.map((currency) => (

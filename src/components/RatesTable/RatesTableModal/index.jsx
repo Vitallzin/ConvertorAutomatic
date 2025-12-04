@@ -17,42 +17,42 @@ function RatesModal({ onClose }) {
     let mounted = true;
     
     async function fetchAllCurrencies() {
-      setLoading(true);
-      setError(null);
-      try {
-        const data = await getRates("USD");
-        const ratesObj = data.conversion_rates || data.rates || data || {};
+      setLoading(true); // Inicia o loading
+      setError(null); // Reseta o erro
+      try { // Busca as taxas com USD como base para obter todas as moedas
+        const data = await getRates("USD"); // Pega as taxas
+        const ratesObj = data.conversion_rates || data.rates || data || {}; // Suporta diferentes formatos de resposta
         
-        if (!ratesObj || Object.keys(ratesObj).length === 0) {
-          throw new Error("Nenhuma moeda retornada pela API");
+        if (!ratesObj || Object.keys(ratesObj).length === 0) { // Verifica se há moedas
+          throw new Error("Nenhuma moeda retornada pela API"); // Lança erro se não houver
         }
         
-        if (mounted) {
-          setAllCurrencies(Object.keys(ratesObj).sort());
+        if (mounted) { // Atualiza o estado se o componente ainda estiver montado
+          setAllCurrencies(Object.keys(ratesObj).sort()); // Ordena alfabeticamente
         }
-      } catch (err) {
-        console.error("Erro ao buscar moedas:", err);
-        if (mounted) {
-          setError("Erro ao buscar moedas. Tente novamente.");
+      } catch (err) { // Captura erros
+        console.error("Erro ao buscar moedas:", err); // Loga o erro
+        if (mounted) { // Atualiza o estado de erro se montado
+          setError("Erro ao buscar moedas. Tente novamente."); // Mensagem de erro amigável
         }
-      } finally {
-        if (mounted) {
-          setLoading(false);
+      } finally { // Finaliza o loading
+        if (mounted) { // Verifica se ainda está montado
+          setLoading(false); // Termina o loading
         }
       }
     }
     
-    fetchAllCurrencies();
-    return () => { mounted = false; };
-  }, []);
+    fetchAllCurrencies(); // Chama a função para buscar moedas
+    return () => { mounted = false; }; // Cleanup para evitar atualizações em componentes desmontados
+  }, []); // Executa apenas uma vez ao montar
 
-  // ✅ Busca as taxas da moeda selecionada
-  useEffect(() => {
-    let mounted = true;
+  //  Busca as taxas da moeda selecionada
+  useEffect(() => { // Atualiza quando a moeda base muda
+    let mounted = true; // Flag para verificar se o componente está montado
     
-    async function fetchRatesForSelected() {
-      setLoading(true);
-      setError(null);
+    async function fetchRatesForSelected() { // Função para buscar taxas
+      setLoading(true); // Inicia o loading
+      setError(null); // Reseta o erro
       try {
         const data = await getRates(baseCurrency);
         const ratesObj = data.conversion_rates || data.rates || data || {};
@@ -96,45 +96,45 @@ function RatesModal({ onClose }) {
         </div>
 
         <p className="rates-modal-subtitle">
-          Visualize as taxas de conversão para diferentes moedas
+          Visualize as taxas de conversão para diferentes moedas 
         </p>
 
         {/* SELECT DA MOEDA BASE */}
         <div className="rates-select-wrapper">
           <label>Moeda Base</label>
           <select
-            value={baseCurrency}
-            onChange={(e) => setBaseCurrency(e.target.value)}
-            disabled={loading || !hasRates}
+            value={baseCurrency} // Valor selecionado
+            onChange={(e) => setBaseCurrency(e.target.value)} // Atualiza o estado ao mudar
+            disabled={loading || !hasRates} // Desabilita durante o loading ou sem taxas
           >
-            {allCurrencies.length > 0 ? (
-              allCurrencies.map((currency) => (
-                <option key={currency} value={currency}>
+            {allCurrencies.length > 0 ? ( // Verifica se há moedas disponíveis
+              allCurrencies.map((currency) => ( // Mapeia as moedas
+                <option key={currency} value={currency}> 
                   {/* 2. EXIBINDO O NOME COMPLETO NO DROPDOWN */}
-                  {currencyData[currency]?.namecomplete || currency} ({currency})
+                  {currencyData[currency]?.namecomplete || currency} ({currency}) {/* Mostra nome completo se disponível */}
                 </option>
               ))
             ) : (
-              <option value={baseCurrency} disabled>
-                {loading ? "Carregando..." : "Sem dados"}
+              <option value={baseCurrency} disabled> 
+                {loading ? "Carregando..." : "Sem dados"}  {/* Mensagem enquanto carrega ou sem dados */}
               </option>
             )}
           </select>
         </div>
         
         {/* FEEDBACK DE STATUS */}
-        {loading && <p className="status-message">Carregando taxas...</p>}
-        {error && <p className="status-message error-message">{error}</p>}
+        {loading && <p className="status-message">Carregando taxas...</p>}   {/* Mostra loading se estiver carregando */}
+        {error && <p className="status-message error-message">{error}</p>}  {/* Mostra erro se houver */}
 
         {/* TABELA */}
         {!loading && !error && hasRates && (
           <table className="rates-table-grid">
             <thead>
-              <tr>
+              <tr> //
                 <th>Moeda</th>
                 <th>Código</th>
                 <th>Taxa</th>
-                <th>1 {baseCurrency} =</th>
+                <th>1 {baseCurrency} =</th>  {/* Cabeçalho atualizado */}
               </tr>
             </thead>
             <tbody>
@@ -142,20 +142,20 @@ function RatesModal({ onClose }) {
                 // Obtém a informação da moeda, se existir
                 const currencyInfo = currencyData[currency] || {};
                 // Usa o nome completo, senão o nome curto, senão o código
-                const displayName = currencyInfo.namecomplete || currencyInfo.name || currency;
+                const displayName = currencyInfo.namecomplete || currencyInfo.name || currency; 
 
                 return (
-                  <tr key={currency}>
+                  <tr key={currency}>  {/* Linha para cada moeda */}
                     <td className="currency-cell">
-                      <Flag currency={currency} />
+                      <Flag currency={currency} /> {/* Mostra a bandeira */}
                       {/* 3. EXIBINDO O NOME COMPLETO NA TABELA */}
                       {displayName}
                     </td>
                     <td>{currency}</td>
                     {/* ALTERAÇÃO 1: Taxa agora com 2 casas decimais */}
-                    <td>{Number(rate || 0).toFixed(2)}</td> 
+                    <td>{Number(rate || 0).toFixed(2)}</td>  {/* Formata a taxa com 2 casas decimais */} 
                     {/* ALTERAÇÃO 2: Valor de 1 {baseCurrency} agora com 2 casas decimais */}
-                    <td>{(1 * rate).toFixed(2)} {currency}</td>
+                    <td>{(1 * rate).toFixed(2)} {currency}</td>  {/* Formata o valor convertido com 2 casas decimais */}
                   </tr>
                 );
               })}

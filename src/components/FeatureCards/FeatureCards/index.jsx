@@ -32,7 +32,7 @@ export default function FeatureCards() {
     <section className="feature-cards-container">
       {items.map((item, index) => (
         <FeatureItem
-        key={index}
+        key={index} // Garantir uma chave única para cada item
         icon={item.icon}
         title1={item.title1}
         title2={item.title2}

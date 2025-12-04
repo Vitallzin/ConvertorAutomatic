@@ -6,15 +6,15 @@ function CurrencyBase({ selectedCurrency, allCurrencies, onChangeCurrency }) { /
     <div className="base-currency-control">
       <label htmlFor="base-currency">Moeda Base:</label>
       <div className="currency-selector-wrapper">
-        <Flag currency={selectedCurrency} />
+        <Flag currency={selectedCurrency} /> {/* Mostra a bandeira da moeda selecionada */}
         <select
           id="base-currency"
-          value={selectedCurrency}
-          onChange={(e) => onChangeCurrency(e.target.value)}
-          className="base-currency-select"
+          value={selectedCurrency} // Valor selecionado
+          onChange={(e) => onChangeCurrency(e.target.value)} // Chama a função ao mudar
+          className="base-currency-select"  // Estilização do select
         >
-          {allCurrencies.map((currency) => (
-            <option key={currency} value={currency}>
+          {allCurrencies.map((currency) => ( // Mapeia todas as moedas disponíveis
+            <option key={currency} value={currency}>  {/* Opção para cada moeda */}
               {currency}
             </option>
           ))}
