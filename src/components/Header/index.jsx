@@ -1,4 +1,4 @@
-import React from 'react'; // Necessário para criar o componente
+import React from 'react'; // Necessário para criar os componentes funcionais
 import './Header.css'; // Arquivo de estilização do header
 import ThemeToggle from '../ThemeToggle'; // Trocar o tema claro/escuro
 
@@ -49,4 +49,4 @@ function Header() {
   );
 }
 
-export default Header;     // Permite que o componente seja importado no App.jsx
+export default Header;     // Exporta para que possa ser usada em outras partes do codigo
