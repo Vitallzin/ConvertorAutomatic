@@ -1,16 +1,12 @@
-// Loader.jsx (ou index.jsx do seu componente Loader)
-
-import React from 'react';
-import './Loader.css'; // Importa o CSS acima
+import React from 'react';     // Necessário para criar os componentes funcionais
+import './Loader.css';        // Arquivo de estilização do loader
 
 function Loader() {
   return (
-    // Adiciona um container para centralizar o spinner
-    <div className="loader-container"> 
-      <div className="loader">
-        {/* Indicador de carregamento (spinner) enquanto os dados estão sendo buscados.*/}
+    <div className="loader-container">     {/* Container utilizado para centralizar o loader */}
+      <div className="loader">             {/* Div que representa o loader */}
       </div>
     </div>
   );
 }
-export default Loader;
+export default Loader;     // Exporta para que possa ser usada em outras partes do codigo
