@@ -19,11 +19,7 @@ export async function getRates(baseCurrency = "USD") {
 // Converter de uma moeda para outra
 export async function convertCurrency(from, to, amount) {
   const ratesData = await getRates(from); // Buscar taxas da moeda base
-
-  // Suporta diferentes formatos de resposta de provedores:
-  // - open.er-api.com -> { conversion_rates: { EUR: ... }, time_last_update_utc }
-  // - exchangerate.host -> { rates: { EUR: ... }, date }
-  // - outros podem retornar nested data; tentamos localizar o objeto de taxas
+  
   const ratesObj =
     (ratesData && ratesData.conversion_rates) ||
     (ratesData && ratesData.rates) ||
