@@ -130,7 +130,7 @@ function RatesModal({ onClose }) {
         {!loading && !error && hasRates && (
           <table className="rates-table-grid">
             <thead>
-              <tr> //
+              <tr> 
                 <th>Moeda</th>
                 <th>Código</th>
                 <th>Taxa</th>
