@@ -10,18 +10,19 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Loader from './components/Loader'; // Importar o Loader (assumindo o caminho)
 
 function App() {
-  // Estado para controlar o carregamento inicial
-  const [isLoading, setIsLoading] = useState(true);
+  // Estado para controlar o carregamento inicial, baseado no carregamento real da página
+  const [isLoading, setIsLoading] = useState(() => document.readyState !== 'complete');
 
-  // Simula o tempo de carregamento da aplicação ou dados iniciais
   useEffect(() => {
-    // Substitua este setTimeout pela sua lógica real de carregamento de dados iniciais (ex: chamar API)
-    const timer = setTimeout(() => {
-      setIsLoading(false); // O carregamento terminou após 2 segundos
-    }, 2000); 
+    if (document.readyState === 'complete') {
+      setIsLoading(false);
+      return;
+    }
 
-    // Função de limpeza
-    return () => clearTimeout(timer);
+    const handleLoad = () => setIsLoading(false);
+    window.addEventListener('load', handleLoad);
+
+    return () => window.removeEventListener('load', handleLoad);
   }, []); // Executa apenas uma vez ao montar
 
   // Se estiver carregando, exibe apenas o Loader

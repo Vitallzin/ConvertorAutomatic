@@ -1,83 +1,135 @@
-.footer{
-  background-color: var(--color-background);
-  padding: 20px 0;
-  margin-top: 40px;
+.footer {
+  background-color: var(--color-background-components, var(--color-background));
+  margin-top: 60px;
+  padding-top: 48px;
   border-top: 1px solid var(--color-border);
-  font-family: 'Segoe UI', Roboto, sans-serif;
-  color: #656668;
-  text-align: left;
+  color: var(--color-muted-foreground);
 }
-
 
 .footer-content {
-display: flex;
-justify-content: center;
-align-items: flex-start;
-gap: 70px;
-flex-wrap: wrap;
-max-width: 1200px;
-margin: 0 auto;
-padding: 20px;
-border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 32px;
 }
 
-.footer-content p {
-  margin: 6px 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  text-align: left;
+.footer-about,
+.footer-apis,
+.footer-team {
+  flex: 1 1 220px;
+  min-width: 220px;
 }
 
+.footer-about {
+  max-width: 340px;
+}
 
-.footer-sobre {
+.footer-brand {
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--color-foreground);
-  text-align: left;
-  max-width: 300px;
-}
-.footer-orientador {
-  color: var(--color-foreground);
+  margin: 0 0 10px;
 }
 
-.footer-team p {
+.footer-tagline {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer-heading {
+  margin: 0 0 12px;
+  font-size: 0.78rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-muted-foreground);
+}
+
+/* Lista de APIs utilizadas */
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links li {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links a {
   color: var(--color-foreground);
-  margin-bottom: 5px;
-  margin-right: 20px;
-}
-/* Estilo da lista de nomes */
-.footer-team ul {
-  /* 1. Remove os marcadores padrão para que possamos adicionar os nossos */
-  list-style-type: none; 
-  padding-left: 0;       
-  margin-left: 0;
-}
-.footer-team li {
-  /* 2. Define a cor do TEXTO */
-  color: #919294; /* Ou a cor que você quiser para o nome */
-  position: relative; 
-  padding-left: 1.2em; /* Cria espaço para o novo marcador */
-  text-align: left;
-}
-.footer-team li::before {
-  /* 3. Adiciona o símbolo e define sua COR ESPECÍFICA */
-  content: "•";        
-  position: absolute;  
-  left: 7px;             
-  top: -4px;
-  color: var(--colocor-pramary-details); /* Use a cor desejada para a bolinha, por exemplo, azul */
-  font-weight: bold;   
-  font-size: 1.2em; /* Opcional: ajuste o tamanho da bolinha */
+  font-weight: 600;
+  font-size: 0.92rem;
 }
 
-.footer-professor {
-  font-style: italic;
-  margin-top: 10px;
-  font-weight: 500;
+.footer-links a:hover {
+  color: var(--color-primary);
 }
 
-.footer-credit {
-  margin-top: 12px;
-  font-size: 0.85rem;
-  font-weight: 500;
+.footer-links span {
+  font-size: 0.8rem;
+  color: var(--color-muted-foreground);
 }
 
+/* Desenvolvedor */
+.footer-team {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.footer-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-foreground);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.footer-github:hover {
+  color: var(--color-primary-foreground);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow);
+}
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px 24px 24px;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .footer-about {
+    max-width: none;
+  }
+}

@@ -40,7 +40,7 @@ button.swap-button,
 .conv-swap-icon {
     font-size: 18px;
     line-height: 1;
-    color: var(--colocor-pramary-details);
+    color: var(--color-primary-details);
     /* Ajuste visual para o ícone */
     transform: rotate(90deg); /* Rotaciona o ↑↓ para parecer mais com a seta do design */
     display: inline-block;

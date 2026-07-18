@@ -6,7 +6,7 @@ function CurrencyBase({ selectedCurrency, allCurrencies, onChangeCurrency }) { /
     <div className="base-currency-control">
       <label htmlFor="base-currency">Moeda Base:</label>
       <div className="currency-selector-wrapper">
-        <Flag currency={selectedCurrency} /> {/* Mostra a bandeira da moeda selecionada */}
+        <Flag currency={selectedCurrency} loading="eager" /> {/* Mostra a bandeira da moeda selecionada */}
         <select
           id="base-currency"
           value={selectedCurrency} // Valor selecionado

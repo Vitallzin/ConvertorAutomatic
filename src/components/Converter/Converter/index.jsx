@@ -28,12 +28,24 @@ const Converter = () => {
   // ✅ CÁLCULO: Símbolo da moeda de DESTINO (para o ResultBox)
   const currencySymbolTo = currencyData[toCurrency]?.symbol || ''; 
   
-  // Inverte as moedas selecionadas e limpa resultado
+  // Inverte as moedas selecionadas, mantendo os valores já calculados:
+  // o resultado atual vira o novo valor editável, e o valor digitado vira o novo resultado.
   const handleSwap = () => {
-    const temp = fromCurrency; 
-    setFromCurrency(toCurrency); 
-    setToCurrency(temp); 
-    setResult(null); 
+    const previousFrom = fromCurrency;
+    const previousTo = toCurrency;
+
+    setFromCurrency(previousTo);
+    setToCurrency(previousFrom);
+
+    if (result === null || result === undefined) {
+      return;
+    }
+
+    const previousAmount = Number(amount);
+
+    setAmount(Number(result).toFixed(2));
+    setResult(previousAmount);
+    setRate(rate ? 1 / rate : null);
   };
   
   const handleOpenModal = () => setIsModalOpen(true);
@@ -69,14 +81,14 @@ const Converter = () => {
   // Efeito que executa a conversão após o usuário parar de digitar (debounce)
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
-        if (amount && !loading) {
+        if (amount) {
             runConversion(amount, fromCurrency, toCurrency);
         }
     }, 500); // Espera 500ms
 
-    return () => clearTimeout(debounceTimer); 
-    
-  }, [amount, fromCurrency, toCurrency, runConversion, loading]); 
+    return () => clearTimeout(debounceTimer);
+
+  }, [amount, fromCurrency, toCurrency, runConversion]);
 
   const handleAmountChange = (v) => {
     setAmount(v); 
@@ -105,13 +117,11 @@ const Converter = () => {
             id="amount-input"
             value={amount}
             onChange={handleAmountChange}
-            disabled={loading}
             symbol={currencySymbolFrom} // ✅ Passa o símbolo para o input
           />
           <CurrencySelectorFrom
-            fromCurrency={fromCurrency} 
-            setFromCurrency={handleFromCurrencyChange} 
-            minimal={true}
+            fromCurrency={fromCurrency}
+            setFromCurrency={handleFromCurrencyChange}
           />
         </div>
       </div>
@@ -134,9 +144,8 @@ const Converter = () => {
             targetSymbol={currencySymbolTo} // ✅ Passa o símbolo para exibição minimalista
           />
           <CurrencySelectorTo
-            toCurrency={toCurrency} 
-            setToCurrency={handleToCurrencyChange} 
-            minimal={true}
+            toCurrency={toCurrency}
+            setToCurrency={handleToCurrencyChange}
           />
         </div>
       </div>

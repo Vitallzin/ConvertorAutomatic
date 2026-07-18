@@ -1,11 +1,13 @@
-/* Estilização da barra superior - layout principal do header */ 
+/* Estilização da barra superior - layout principal do header */
 .app-header {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   padding: 10px 32px;
-  height: 48px;
+  min-height: 48px;
   background: var(--color-primary-foreground);
   border-bottom: 1px solid var(--color-border);
   box-shadow: var(--box-shadow);
@@ -18,8 +20,19 @@
 .header-left {
   display: flex;
   align-items: center;
-  gap: 28px;     /* Espaçamento entre os links */
-  height: 100%;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  column-gap: 28px;     /* Espaçamento entre os links */
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    padding: 10px 16px;
+  }
+
+  .header-left {
+    column-gap: 16px;
+  }
 }
 
 /* Estilização dos links */
@@ -34,6 +47,7 @@
   font-weight: 500;
   color: var(--color-primary);
   text-decoration: none;     /* Remove sublinhado dos links */
+  cursor: pointer;     /* Garante o cursor de clique (sem href, o navegador usaria o cursor de texto) */
   transition: color 0.3s, text-shadow 0.3s;     /* Deixa o hover mais suave */
 }
 
@@ -41,6 +55,12 @@
 .header-left a:hover {
   color: var(--color-primary-hover);
   text-shadow: 0 0 6px rgba(100, 108, 255, 0.3);
+}
+
+/* Marca/logo com um pouco mais de destaque que os demais links */
+.logo {
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 /* Estlizaçãp da parte direita do header */

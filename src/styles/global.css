@@ -14,7 +14,7 @@
   --color-primary: #b964ff; /* botões, detalhes */
   --color-primary-hover: #7a80ff;
   --color-primary-foreground: #ffffff;
-  --colocor-pramary-details: #881ac7;
+  --color-primary-details: #881ac7;
 
   /* CARTÕES */
   --color-card: #ffffff;
@@ -40,7 +40,7 @@
 
   --radius: 10px;
 
-  --box-shadow: 0 4px 6px rgba(158, 29, 197, 0.589);
+  --box-shadow: 0 8px 24px rgba(124, 32, 209, 0.14);
 
   --accent: #646cff;
 }
@@ -84,7 +84,7 @@
   --color-primary: #c157eb;
   --color-primary-hover: #a5abff;
   --color-primary-foreground: #0d0d10;
-  --colocor-pramary-details: #bb3ff5;
+  --color-primary-details: #bb3ff5;
 
   --color-card: #17171c;
   --color-card-foreground: #f5f5f5;
@@ -102,7 +102,7 @@
 
   --color-ring: #8f95ff;
 
-  --box-shadow: 0 4px 6px rgba(179, 12, 230, 0.664);
+  --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 
   --accent: #8f95ff;
 }
@@ -117,7 +117,7 @@ html, body {
 }
 
 body {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-size: var(--font-size);
   background: var(--color-background) !important;
   color: var(--color-foreground);
@@ -142,23 +142,15 @@ body::-webkit-scrollbar-track {
 /* Forçando o indicador para o roxo principal (B964FF) */
 html::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb {
-  background-color: var(--colocor-pramary-details); /* Cor primária fixa (var(--color-primary)) */
-  border-radius: 10px; /* Usando o valor fixo (var(--radius)) */
+  background-color: var(--color-primary-details);
+  border-radius: 10px;
 }
 
 /* Estiliza o indicador ao passar o mouse */
 html::-webkit-scrollbar-thumb:hover,
 body::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-primary); /* Cor de hover fixa (var(--color-primary-hover)) */
+  background-color: var(--color-primary-hover);
 }
-/* ... */
-/* Estiliza o "trilho" (o fundo da barra) */
-html::-webkit-scrollbar-track,
-body::-webkit-scrollbar-track {
-  /* Aqui usamos uma cor sólida, ou a cor principal do tema claro */
-  background: var(--color-background-solid, var(--color-background)); 
-}
-/* ... */
 
 /* Suporte para Firefox */
 html, body {

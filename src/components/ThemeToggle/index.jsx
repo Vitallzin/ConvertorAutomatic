@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-// REVERTER PARA OS IMPORTS ORIGINAIS DE IMAGEM
-import lua from "../../../public/lua.png";
-import sol from "../../../public/sol.png";
+import { FiMoon, FiSun } from "react-icons/fi";
 import "./ThemeToggle.css";
 
 export default function ThemeToggle() { // Componente funcional
@@ -30,13 +28,11 @@ export default function ThemeToggle() { // Componente funcional
       className="theme-toggle"  // Botão de alternância de tema
       onClick={toggle} // Chama a função toggle ao clicar
     >
-      {/* REVERTER PARA A TAG <img> verdade */}
-      <img 
-        src={theme === "dark" ? sol : lua} // Mostra o ícone baseado no tema atual
-        width="20"
-        height="20"
-        alt="ícone de tema"
-      />
+      {theme === "dark" ? (
+        <FiSun size={20} aria-label="ícone de tema" />
+      ) : (
+        <FiMoon size={20} aria-label="ícone de tema" />
+      )}
     </button>
   );
 }

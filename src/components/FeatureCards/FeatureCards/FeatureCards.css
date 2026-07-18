@@ -11,30 +11,30 @@
 
 /* CARD INDIVIDUAL */
 .feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: var(--color-background-components);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  padding: 24px;
-  text-align: left;
-  transition: all 0.25s ease;
+  padding: 28px 24px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
+.feature-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--box-shadow);
+}
+
 /* TITULO */
-.feature-title1 {
-  margin: 10px 60px ;
+.feature-title1,
+.feature-title2,
+.feature-title3 {
+  margin: 4px 0 8px;
   font-size: 1.1rem;
   color: var(--color-foreground);
-}
-.feature-title2 {
-    margin: 10px 76px ;
-    font-size: 1.1rem;
-    color: var(--color-foreground);
-}
-.feature-title3 {
-    margin: 10px 40px ;
-    font-size: 1.1rem;
-    color: var(--color-foreground);
 }
 
 /* DESCRIÇÃO */
@@ -46,7 +46,15 @@
 
 /* ICONE */
 .feature-icon {
-  margin: 10px 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-primary);
 }
 p{
     color: var(--color-muted-foreground);

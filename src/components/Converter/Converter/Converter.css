@@ -5,7 +5,8 @@
 
 /* Estilos do container principal do conversor */
 .conv-box {
-	width: 700px; /* Reduzido para parecer mais compacto como na imagem */
+	width: 100%;
+	max-width: 700px; /* Reduzido para parecer mais compacto como na imagem */
 	/* Variáveis do global.css */
 	background: var(--color-background-components); /* Fundo do componente (escuro no tema dark) */
 	color: var(--color-foreground); /* Cor do texto principal (roxo/claro no dark) */
@@ -14,6 +15,16 @@
 	padding: 30px; /* Mais padding */
 	margin: 20px auto;
 	box-shadow: var(--box-shadow); /* Sombra roxa no dark */
+}
+
+@media (max-width: 560px) {
+	.conv-box {
+		padding: 20px;
+	}
+
+	.conv-field {
+		padding: 12px 0;
+	}
 }
 
 /* Título */
@@ -53,10 +64,10 @@
 .conv-input-group {
     display: flex;
     align-items: stretch; /* Garante que os filhos tenham a mesma altura */
+    position: relative; /* Contexto de posicionamento para o painel do dropdown de moedas */
     border: 1px solid var(--color-border); /* Borda única para o grupo */
     border-radius: var(--radius);
-    overflow: hidden; /* Garante que os cantos arredondados funcionem */
-    /* Garante que o input e o select fiquem do mesmo tamanho */
+    /* Sem overflow:hidden aqui: o painel do dropdown de moedas precisa "vazar" para fora do grupo */
     height: 55px; /* Altura fixa para alinhar com o design */
 }
 
@@ -70,8 +81,7 @@
 /* Botão principal (Ver Tabela de Taxas) */
 .conv-btn-main {
     width: 100%;
-    /* Cor de fundo roxa sólida (ajustada para um roxo mais forte) */
-    background: #881AC7; 
+    background: var(--color-primary-details);
     color: var(--color-primary-foreground);
     border: none;
     padding: 15px;
@@ -80,11 +90,11 @@
     font-weight: bold;
     border-radius: var(--radius);
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(136, 26, 199, 0.4);
-    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: var(--box-shadow);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 
 .conv-btn-main:hover {
-    background: #9d2ae2; /* Roxo ligeiramente mais claro no hover */
-    box-shadow: 0 6px 15px rgba(136, 26, 199, 0.6);
+    background: var(--color-primary);
+    transform: translateY(-1px);
 }

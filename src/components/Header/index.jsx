@@ -19,8 +19,6 @@ function Header() {
           ConvertorAutomatic
         </a>
 
-        <a href="#"> Ajuda </a>
-
         {/* Link da API de conversão de moedas */}
         <a 
           href="https://www.exchangerate-api.com/" 
@@ -30,13 +28,13 @@ function Header() {
           API Exchange
         </a>
 
-        {/* Link da API para as bandeiras dos países */}
+        {/* Link do CDN de bandeiras dos países */}
         <a
-          href="https://flagsapi.com/#countries"
-          target="_blank" 
+          href="https://flagcdn.com/"
+          target="_blank"
           rel="noreferrer"
         >
-          API CountryFlag
+          FlagCDN
         </a>
       </div>
 

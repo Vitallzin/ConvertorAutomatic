@@ -1,24 +1,22 @@
 import React from "react";
 import FeatureItem from "../FeatureItem";
 import "./FeatureCards.css";
-import setas from "../../../../public/setas.png";
-import raio from "../../../../public/raio.png";
-import escudo from "../../../../public/escudo.png";
+import { FiRefreshCw, FiZap, FiShield } from "react-icons/fi";
 
 export default function FeatureCards() {
   const items = [
     {
-      icon: <img src={setas} alt="ícone de setas" width="40" height="40" />,
+      icon: <FiRefreshCw size={40} aria-label="ícone de setas" />,
       title1: "Conversão Instantânea",
       description: "Converta qualquer moeda em milissegundos usando nossa API."
     },
     {
-      icon: <img src={escudo} alt="ícone de escudo" width="40" height="40" />,
+      icon: <FiShield size={40} aria-label="ícone de escudo" />,
       title2: "Mais de 160 Moedas",
       description: "Suporte global para todas as principais moedas do mundo."
     },
     {
-      icon: <img src={raio} alt="ícone de raio" width="40" height="40" />,
+      icon: <FiZap size={40} aria-label="ícone de raio" />,
       title3: "Atualização em Tempo Real",
       description: "Valores atualizados constantemente para maior precisão."
     }

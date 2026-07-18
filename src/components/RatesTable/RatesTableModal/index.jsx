@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./RatesTableModal.css";
 import { getRates } from "../../../services/Api";
 import Flag from "../../Flag";
+import CurrencyDropdown from "../../Converter/CurrencyDropdown";
+import { FiX } from "react-icons/fi";
 // 1. IMPORTAR DADOS DE MOEDA
 import { currencyData } from "../../../utils/CurrencData"; // <--- ATENÇÃO: Verifique e ajuste este caminho conforme a sua estrutura!
 
@@ -87,41 +89,35 @@ function RatesModal({ onClose }) {
 
   return (
     <div className="rates-modal-overlay">
+      <div className="rates-modal-shell">
+        {/* BOTÃO DE FECHAR, flutuando no canto de fora do card.
+            Fica fora do container com scroll para não ser cortado pelo overflow. */}
+        <button className="close-btn" onClick={onClose} aria-label="Fechar">
+          <FiX size={18} />
+        </button>
+
       <div className="rates-modal-container">
 
         {/* HEADER */}
         <div className="rates-modal-header">
           <h2>Taxas de Câmbio</h2>
-          <button className="close-btn" onClick={onClose}>×</button>
         </div>
 
         <p className="rates-modal-subtitle">
-          Visualize as taxas de conversão para diferentes moedas 
+          Visualize as taxas de conversão para diferentes moedas
         </p>
 
-        {/* SELECT DA MOEDA BASE */}
+        {/* SELETOR DA MOEDA BASE (com bandeira e busca) */}
         <div className="rates-select-wrapper">
           <label>Moeda Base</label>
-          <select
-            value={baseCurrency} // Valor selecionado
-            onChange={(e) => setBaseCurrency(e.target.value)} // Atualiza o estado ao mudar
-            disabled={loading || !hasRates} // Desabilita durante o loading ou sem taxas
-          >
-            {allCurrencies.length > 0 ? ( // Verifica se há moedas disponíveis
-              allCurrencies.map((currency) => ( // Mapeia as moedas
-                <option key={currency} value={currency}> 
-                  {/* 2. EXIBINDO O NOME COMPLETO NO DROPDOWN */}
-                  {currencyData[currency]?.namecomplete || currency} ({currency}) {/* Mostra nome completo se disponível */}
-                </option>
-              ))
-            ) : (
-              <option value={baseCurrency} disabled> 
-                {loading ? "Carregando..." : "Sem dados"}  {/* Mensagem enquanto carrega ou sem dados */}
-              </option>
-            )}
-          </select>
+          <CurrencyDropdown
+            value={baseCurrency}
+            onChange={setBaseCurrency}
+            currencies={allCurrencies.length > 0 ? allCurrencies : [baseCurrency]}
+            disabled={loading || !hasRates}
+          />
         </div>
-        
+
         {/* FEEDBACK DE STATUS */}
         {loading && <p className="status-message">Carregando taxas...</p>}   {/* Mostra loading se estiver carregando */}
         {error && <p className="status-message error-message">{error}</p>}  {/* Mostra erro se houver */}
@@ -170,6 +166,7 @@ function RatesModal({ onClose }) {
           </div>
         )}
 
+      </div>
       </div>
     </div>
   );

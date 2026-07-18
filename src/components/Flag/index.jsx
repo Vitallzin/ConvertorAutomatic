@@ -2,7 +2,7 @@ import React from "react";
 import './Flag.css'
 import { currencyData } from "../../utils/CurrencData";
 
-export default function Flag({ currency, size = 32 }) {
+export default function Flag({ currency, size = 32, loading = "lazy" }) {
   if (!currency) return null;
 
   const upper = currency.toUpperCase();
@@ -20,6 +20,7 @@ export default function Flag({ currency, size = 32 }) {
         width= {size}
         height={size}
         style={{ borderRadius: 4, objectFit: "cover" }}
+        loading={loading}
       />
     );
   }
@@ -40,8 +41,10 @@ export default function Flag({ currency, size = 32 }) {
     );
   }
 
-  // Tenta construir a URL com o código de país da API
-  const url = `https://flagsapi.com/${country}/flat/${size}.png`;
+  // Usa o FlagCDN (CDN estático, muito mais confiável que APIs geradas na hora).
+  // A CDN só serve alguns tamanhos fixos (w20, w40, w80...); pegamos w40 e deixamos
+  // o <img> escalar via width/height para o tamanho pedido.
+  const url = `https://flagcdn.com/w40/${country.toLowerCase()}.png`;
 
   return (
     <img
@@ -50,8 +53,8 @@ export default function Flag({ currency, size = 32 }) {
       width={size}
       height={size}
       style={{ borderRadius: 4, objectFit: "cover" }}
+      loading={loading}
       onError={(e) => {
-        console.error(`Erro ao carregar imagem: ${url}`);
         e.currentTarget.style.display = "none";
       }}
     />
