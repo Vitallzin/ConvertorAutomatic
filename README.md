@@ -1,24 +1,26 @@
-# Conversor Automático de Moedas 💱
+# ConvertorAutomatic 💱
 
-Um aplicativo React moderno para conversão de moedas em tempo real com interface intuitiva e suporte a múltiplas moedas.
+Conversor de moedas em tempo real, construído em React + Vite. Projeto acadêmico criado para colocar em prática consumo de APIs, componentização e boas práticas de front-end.
 
-## 🎯 Funcionalidades
+## Funcionalidades
 
-- ✅ **Conversão de moedas em tempo real** - Acesso a taxas de câmbio atualizadas via API
-- ✅ **Múltiplas moedas suportadas** - USD, EUR, BRL, GBP, JPY, CNY, AUD, CAD, e mais
-- ✅ **Bandeiras dos países** - Exibição visual das bandeiras para cada moeda
-- ✅ **Swap de moedas** - Botão para inverter as moedas origem/destino
-- ✅ **Formatação localizada** - BRL com 0 casas decimais, outras moedas com 2
-- ✅ **Data/hora de atualização** - Mostra quando a taxa foi atualizada (fuso horário São Paulo)
-- ✅ **Tratamento de erros robusto** - ErrorBoundary e handlers globais
-- ✅ **Responsivo** - Interface adaptável para diferentes tamanhos de tela
+- **Conversão em tempo real** entre mais de 160 moedas, com taxas atualizadas via API.
+- **Seletor de moeda com busca** — dropdown customizado com bandeira, sigla e filtro por código ou nome (ex: `brl`, `real`), no lugar do `<select>` nativo do navegador.
+- **Inversão inteligente** — o botão de swap troca as moedas mantendo os valores já calculados (o resultado vira o novo valor editável, e vice-versa).
+- **Tabela de taxas de câmbio** em um modal, com o mesmo seletor pesquisável para trocar a moeda base.
+- **Tema claro/escuro** com preferência salva localmente.
+- **Layout responsivo**, sem overflow horizontal em telas pequenas.
+- **Tratamento de erros** com `ErrorBoundary` e handlers globais.
 
-## 🚀 Início Rápido
+## Tecnologias
 
-### Pré-requisitos
-- Node.js 16+ e npm
+- [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
+- [react-icons](https://react-icons.github.io/react-icons/) para os ícones da interface
+- CSS puro, com variáveis de tema (light/dark) em [`src/styles/global.css`](src/styles/global.css)
 
-### Instalação
+## Como rodar localmente
+
+Pré-requisitos: Node.js 18+ e npm.
 
 ```bash
 # Clonar o repositório
@@ -27,110 +29,63 @@ cd ConvertorAutomatic
 
 # Instalar dependências
 npm install
-```
 
-### Executar em desenvolvimento
-
-```bash
+# Rodar em modo desenvolvimento
 npm run dev
 ```
 
-A aplicação abrirá em `http://localhost:5173`
+A aplicação abre em `http://localhost:5173`.
 
-### Build para produção
+Outros scripts disponíveis:
 
 ```bash
-npm run build
+npm run build    # build de produção
+npm run preview  # serve o build de produção localmente
+npm run lint     # roda o ESLint
 ```
 
-## 📁 Estrutura do Projeto
+## Estrutura do projeto
 
 ```
 src/
 ├── components/
-│   ├── Converter/           # Componente principal
-│   │   ├── Converter/       # Orquestrador de lógica
-│   │   ├── AmountInput/     # Input de valor
-│   │   ├── ConvertButton/   # Botão de conversão
-│   │   ├── SwapButton/      # Botão de inversão
-│   │   ├── ResultBox/       # Exibição de resultado
-│   │   ├── CurrencySelectorFrom/  # Seletor origem
-│   │   └── CurrencySelectorTo/    # Seletor destino
-│   ├── Flag/                # Componente de bandeira
-│   ├── ErrorBoundary/       # Tratamento de erros
-│   └── ...outros
+│   ├── Header/                   # Barra superior (logo, links, tema)
+│   ├── FeatureCards/              # Cards de destaque na home
+│   ├── Converter/
+│   │   ├── Converter/             # Orquestra o fluxo de conversão
+│   │   ├── AmountInput/           # Campo de valor com símbolo da moeda
+│   │   ├── CurrencyDropdown/      # Seletor de moeda com busca e bandeira
+│   │   ├── CurrencySelectorFrom/  # Wrapper do CurrencyDropdown (moeda de origem)
+│   │   ├── CurrencySelectorTo/    # Wrapper do CurrencyDropdown (moeda de destino)
+│   │   ├── SwapButton/            # Botão de inverter moedas
+│   │   └── ResultBox/             # Exibição do valor convertido
+│   ├── RatesTable/
+│   │   └── RatesTableModal/       # Modal com a tabela de taxas de câmbio
+│   ├── Flag/                      # Bandeira do país (FlagCDN, com fallback local para EUR)
+│   ├── ThemeToggle/                # Alternância de tema claro/escuro
+│   ├── Loader/                     # Tela de carregamento inicial (real, baseada no load da página)
+│   ├── ErrorBoundary/               # Captura erros de render
+│   └── Footer/                      # Rodapé (sobre, APIs usadas, desenvolvedor)
 ├── services/
-│   └── api.js               # Integração com API de câmbio
+│   └── Api.js                     # Integração com a API de câmbio
 ├── utils/
-│   ├── currencyToCountry.js # Mapeamento moeda→país
-│   └── initErrorHandlers.js # Handlers globais de erro
-└── main.jsx                 # Entry point
+│   ├── CurrencData.js             # Dados estáticos das moedas (símbolo, país, nome)
+│   └── initErrorHandlers.js       # Handlers globais de erro
+├── assets/                        # Imagens importadas pelo código (ex: bandeira da UE)
+└── main.jsx                       # Entry point
 ```
 
-## 🔧 Componentes Principais
+## APIs utilizadas
 
-### Converter (`src/components/Converter/Converter/index.jsx`)
-Gerencia todo o fluxo da conversão:
-- Estado das moedas selecionadas
-- Valor a converter
-- Chamadas à API
-- Exibição de resultados
+| API | Uso |
+|---|---|
+| [Exchange Rate API](https://www.exchangerate-api.com/) | Cotações de câmbio em tempo real |
+| [FlagCDN](https://flagcdn.com/) | Bandeiras dos países |
 
-### Flag (`src/components/Flag/index.jsx`)
-Exibe a bandeira do país associado à moeda:
-- Usa API `flagcdn.com` para imagens
-- Fallback para código de moeda se bandeira não carregar
-- Tratamento de erros de carregamento
+## Desenvolvido por
 
-### ErrorBoundary (`src/components/ErrorBoundary/index.jsx`)
-Captura erros de render e exibe interface amigável ao usuário
+[Vitallzin](https://github.com/Vitallzin)
 
-## 📡 API Utilizada
+## Licença
 
-- **Base**: open.er-api.com
-- **Endpoint**: `/v1/latest/{moeda}`
-- **Bandeiras**: flagcdn.com
-
-## 💰 Moedas Suportadas
-
-USD, EUR, BRL, GBP, ARS, AUD, CAD, CHF, CNY, JPY, KRW, NZD, SEK, NOK, DKK, RUB, INR, MXN, ZAR, TRY, HKD, SGD, AED, SAR, CLP, COP, PEN, BOB, UYU, PYG, PLN, CZK, HUF, THB, MYR, PHP, IDR, ILS, EGP, VND, BHD, QAR, KWD
-
-## 🎨 Personalização
-
-### Alterar formato de decimais
-Edite `src/components/Converter/ResultBox/index.jsx` - função `formatConvertedAmount()`
-
-### Adicionar novas moedas
-1. Atualize `src/utils/currencyToCountry.js`
-2. A bandeira será carregada automaticamente
-
-## ⚠️ Tratamento de Erros
-
-- **ErrorBoundary**: Captura erros de render
-- **Global Error Handlers**: Suprime overlay do Vite para erros da aplicação
-- **Try/Catch**: Proteção em operações críticas (formatação, API)
-
-## 🐛 Debug
-
-Abra o DevTools (F12) e verifique:
-- Console para logs de erro
-- Network para requisições à API
-- Application para verificar estado
-
-## 📦 Dependências
-
-- React 18+
-- Vite (dev)
-- ESLint (dev)
-
-## 🤝 Contribuições
-
-Sinta-se livre para abrir issues e pull requests!
-
-## 📝 Licença
-
-Este projeto está aberto para uso pessoal e educacional.
-
----
-
-**Desenvolvido com ❤️ usando React + Vite**
+Projeto aberto para uso pessoal e educacional.

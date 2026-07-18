@@ -1,4 +1,4 @@
-import EU from '../../public/EU.png';
+import EU from '../assets/EU.png';
 
 
 export const currencyData = {
